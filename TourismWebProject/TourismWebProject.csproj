@@ -117,6 +117,7 @@
     <Content Include="Areas\Admin\Assets\vendor\datatables\jquery.dataTables.js" />
     <Content Include="Areas\Admin\Assets\vendor\datatables\jquery.dataTables.min.js" />
     <Content Include="Areas\Admin\Assets\vendor\fontawesome-free\css\all.css" />
+    <Content Include="Areas\Admin\Assets\vendor\fontawesome-free\css\CustomTable.css" />
     <Content Include="Areas\Admin\Assets\vendor\fontawesome-free\css\all.min.css" />
     <Content Include="Areas\Admin\Assets\vendor\fontawesome-free\css\brands.css" />
     <Content Include="Areas\Admin\Assets\vendor\fontawesome-free\css\brands.min.css" />
@@ -1807,6 +1808,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
+    <Compile Include="Models\AboutViewModel.cs" />
     <Compile Include="Models\AboutPage.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Advantage.cs" />
@@ -2128,6 +2130,8 @@
     <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Hotels\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Tours\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\About\MainEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\About\ItemEdit.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2140,6 +2144,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Public\Models\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902151056287_DatabaseV1Added.resx">
