@@ -21,7 +21,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
             ContactViewModel viewModel = new ContactViewModel()
             {
-               contactForm = db.ContactForm.Include(x => x.UserId).ToList(),
+               contactForm = db.ContactForm.ToList(),
                 contactPage = db.ContactPage.ToList()
             };
             return View(viewModel);

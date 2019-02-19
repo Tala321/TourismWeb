@@ -9,7 +9,9 @@ namespace TourismWebProject.Models
 {
     [Table(name: "BlogDetails")]
     public class BlogDetail
-    {   [Key]
+    {
+  
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BlogDetailId { get; set; }
 
@@ -23,5 +25,8 @@ namespace TourismWebProject.Models
 
         [MaxLength(100)]
         public string BlogDetailPic { get; set; }
-        public ICollection<BlogItem> BlogItem { get; set; } }
+
+        public ICollection<BlogItem> BlogItem { get; set; }
+    }
+
 }

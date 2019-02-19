@@ -9,15 +9,7 @@ namespace TourismWebProject.Models
 {
     [Table(name: "Comments")]
     public class Comment
-    {
-
-        public CommentType CommentTypeId { get; set; }
-
-        public ServiceType ServiceTypeId { get; set; }
-
-        public User UserId { get; set; }
-
-    
+    {  
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CommentId { get; set; }
@@ -28,6 +20,20 @@ namespace TourismWebProject.Models
         [Required]
         public DateTime CommentDate { get; set; }
 
+        public int CommentTypeId { get; set; }
+
+        [ForeignKey("CommentTypeId")]
+        public CommentType CommentType { get; set; }
+
+        public int ServiceTypeId { get; set; }
+
+        [ForeignKey("ServiceTypeId")]
+        public ServiceType ServiceType { get; set; }
+
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
 
     }
 }

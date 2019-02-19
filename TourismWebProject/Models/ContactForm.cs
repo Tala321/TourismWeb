@@ -29,8 +29,10 @@ namespace TourismWebProject.Models
         [Required]
         public string ContactFormMessage { get; set; }
 
-        [Required]
-        public User UserId { get; set; }
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
 
 
     }

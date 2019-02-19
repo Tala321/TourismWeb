@@ -7,7 +7,7 @@ using System.Web;
 
 namespace TourismWebProject.Models
 {
-    [Table(name: "  Rooms")]
+    [Table(name: "Rooms")]
     public class Room
     {
         [Key]

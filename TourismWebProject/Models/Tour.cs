@@ -36,18 +36,26 @@ namespace TourismWebProject.Models
         [Required]
         public bool TourStatus { get; set; }
 
-       
-        public Location LocationId { get; set; }
 
-       
-        public Rating RatingId { get; set; }
+        public int LocationId { get; set; }
 
-        
-        public ServiceType ServiceTypeId { get; set; }
+        [ForeignKey("LocationId")]
+        public Location Location { get; set; }
 
-        [Required]
-        public Hotel HotelId { get; set; }
+        public int RatingId { get; set; }
 
+        [ForeignKey("RatingId")]
+        public Rating Rating { get; set; }
+
+        public int ServiceTypeId { get; set; }
+
+        [ForeignKey("ServiceTypeId")]
+        public ServiceType ServiceType { get; set; }
+
+        public int HotelId { get; set; }
+
+        [ForeignKey("HotelId")]
+        public Hotel Hotel { get; set; }
 
         public ICollection<TourPhoto> TourPhoto { get; set; }
     }

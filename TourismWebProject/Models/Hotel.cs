@@ -10,6 +10,7 @@ namespace TourismWebProject.Models
     [Table(name: "Hotels")]
     public class Hotel
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int HotelId { get; set; }
@@ -33,18 +34,22 @@ namespace TourismWebProject.Models
         [Required]
         public bool HotelStatus { get; set; }
 
-        [Required]
-        public Location LocationId { get; set; }
+        public int LocationId { get; set; }
 
-        [Required]
-        public Rating RatingId { get; set; }
+        [ForeignKey("LocationId")]
+        public Location Location { get; set; }
 
-        [Required]
-        public ServiceType ServiceTypeId { get; set; }
+        public int RatingId { get; set; }
+
+        [ForeignKey("RatingId")]
+        public Rating Rating { get; set; }
+
+        public int ServiceTypeId { get; set; }
+
+        [ForeignKey("ServiceTypeId")]
+        public ServiceType ServiceType { get; set; }
 
         public ICollection<Room> Room { get; set; }
-
-        public ICollection<Tour> Tour { get; set; }
 
         public ICollection<HotelPhoto> HotelPhoto { get; set; }
     }

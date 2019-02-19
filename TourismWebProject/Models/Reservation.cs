@@ -11,16 +11,9 @@ namespace TourismWebProject.Models
     public class Reservation
     {
 
-       
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReservationServiceId { get; set; }
-
-        public User UserId { get; set; }
-
-        public ServiceType ServiceTypeId { get; set; }
-
 
         [Required]
         public int ReservationServiceTypeId { get; set; }
@@ -36,6 +29,16 @@ namespace TourismWebProject.Models
 
         [Required]
         public bool ReservationStatus { get; set; }
+
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+
+        public int ServiceTypeId { get; set; }
+
+        [ForeignKey("ServiceTypeId")]
+        public ServiceType ServiceType { get; set; }
 
     }
 }

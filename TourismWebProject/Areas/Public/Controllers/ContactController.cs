@@ -18,7 +18,7 @@ namespace TourismWebProject.Areas.Public.Controllers
         {
             ContactViewModel viewModel = new ContactViewModel()
             {
-                contactForm = db.ContactForm.Include(x => x.UserId).ToList(),
+                contactForm = db.ContactForm.ToList(),
                 contactPage = db.ContactPage.ToList()
             };
             return View(viewModel);
@@ -29,29 +29,9 @@ namespace TourismWebProject.Areas.Public.Controllers
         {
            
             db.ContactForm.Add(contactForm);
-            try
-            {
-                
+             
                 db.SaveChanges();
-            }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-            {
-                Exception raise = dbEx;
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        string message = string.Format("{0}:{1}",
-                            validationErrors.Entry.Entity.ToString(),
-                            validationError.ErrorMessage);
-                        // raise a new exception nesting
-                        // the current instance as InnerException
-                        raise = new InvalidOperationException(message, raise);
-                    }
-                }
-                throw raise;
-            }
-           
+         
             return RedirectToAction("Index");
         }
     }

@@ -183,7 +183,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
         //Create,Delete Faq-------------------------------------------------------------------
         [HttpGet]
         public ActionResult Create()
-        { 
+        {
 
             return View();
         }

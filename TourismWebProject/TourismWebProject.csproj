@@ -1781,6 +1781,22 @@
     <Compile Include="Migrations\201902191727144_UpdatedV2.Designer.cs">
       <DependentUpon>201902191727144_UpdatedV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902191733550_Changed.cs" />
+    <Compile Include="Migrations\201902191733550_Changed.Designer.cs">
+      <DependentUpon>201902191733550_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191736188_Changed1.cs" />
+    <Compile Include="Migrations\201902191736188_Changed1.Designer.cs">
+      <DependentUpon>201902191736188_Changed1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191742503_Changed3.cs" />
+    <Compile Include="Migrations\201902191742503_Changed3.Designer.cs">
+      <DependentUpon>201902191742503_Changed3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191912536_RefreshFK.cs" />
+    <Compile Include="Migrations\201902191912536_RefreshFK.Designer.cs">
+      <DependentUpon>201902191912536_RefreshFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
     <Compile Include="Models\AboutViewModel.cs" />
@@ -2163,6 +2179,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902191727144_UpdatedV2.resx">
       <DependentUpon>201902191727144_UpdatedV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191733550_Changed.resx">
+      <DependentUpon>201902191733550_Changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191736188_Changed1.resx">
+      <DependentUpon>201902191736188_Changed1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191742503_Changed3.resx">
+      <DependentUpon>201902191742503_Changed3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191912536_RefreshFK.resx">
+      <DependentUpon>201902191912536_RefreshFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
