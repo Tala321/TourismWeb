@@ -10,5 +10,8 @@ namespace TourismWebProject.Models
         public List<AboutPage> AboutPage { get; set; }
 
         public List<AboutItem> AboutItem { get; set; }
+
+        public List<Faq> Faqs { get; set; }
+
     }
 }

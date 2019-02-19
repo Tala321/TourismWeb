@@ -35,7 +35,6 @@ namespace TourismWebProject.Models
         public string ContactEmail { get; set; }
 
         [Required]
-        [MaxLength(250)]
         public string ContactOfficeLocation { get; set; }
 
     }

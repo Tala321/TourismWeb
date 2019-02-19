@@ -10,10 +10,7 @@ namespace TourismWebProject.Models
     [Table(name:"UserTypes")]
     public class UserType
     {
-        public UserType()
-        {
-            ContactForm = new HashSet<ContactForm>();
-        }
+        
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,7 +20,6 @@ namespace TourismWebProject.Models
         [MaxLength(50)]
         public string UserName { get; set; }
 
-        public ICollection<ContactForm> ContactForm { get; set; }
 
     }
 }

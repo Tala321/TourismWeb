@@ -30,7 +30,7 @@ namespace TourismWebProject.Models
         public string ContactFormMessage { get; set; }
 
         [Required]
-        public UserType UserTypeId { get; set; }
+        public User UserId { get; set; }
 
 
     }

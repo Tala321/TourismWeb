@@ -17,13 +17,14 @@ namespace TourismWebProject.Areas.Admin.Controllers
             AboutViewModel viewModel = new AboutViewModel()
             {
                 AboutPage = db.AboutPage.ToList(),
-                AboutItem = db.AboutItem.ToList()
+                AboutItem = db.AboutItem.ToList(),
+                Faqs = db.Faq.ToList()
             };
 
             return View(viewModel);
         }
 
-
+        //Edit Main Page-------------------------------------------------------------------
         [HttpGet]
         public ActionResult MainEdit(int? id)
         {
@@ -63,7 +64,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
                         }
                         db.SaveChanges();
                     }
-              
+
                 }
                 catch
                 {
@@ -72,7 +73,9 @@ namespace TourismWebProject.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+        //------------------------------------------------------------------
 
+        //Edit items-------------------------------------------------------------------
         [HttpGet]
         public ActionResult ItemEdit(int? id)
         {
@@ -88,9 +91,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
                     ViewData["AboutText"] = item.AboutText.ToString();
                 }
-
             }
-
             return View();
         }
 
@@ -128,7 +129,92 @@ namespace TourismWebProject.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+        //------------------------------------------------------------------
 
+
+        //Edit Faq-------------------------------------------------------------------
+        [HttpGet]
+        public ActionResult FaqEdit(int? id)
+        {
+            TempData["FaqId"] = id;
+
+            foreach (var item in db.Faq.ToList())
+            {
+                if (item.FaqId == Convert.ToInt32(id))
+                {
+                    ViewData["FaqQuestion"] = item.FaqQuestion.ToString();
+
+                    ViewData["FaqAnswer"] = item.FaqAnswer.ToString();
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FaqEdit(Faq faq)
+        {
+            foreach (var item in db.Faq.ToList())
+            {
+                try
+                {
+                    if (item.FaqId == Convert.ToInt32(TempData["FaqId"]))
+                    {
+                        if (faq.FaqQuestion.Length > 0)
+                        {
+                            item.FaqQuestion = faq.FaqQuestion;
+                        }
+                        if (faq.FaqAnswer.Length > 0)
+                        {
+                            item.FaqAnswer = faq.FaqAnswer;
+                        }
+                        db.SaveChanges();
+                    }
+                }
+                catch
+                {
+                    break;
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        //------------------------------------------------------------------
+
+        //Create,Delete Faq-------------------------------------------------------------------
+        [HttpGet]
+        public ActionResult Create()
+        { 
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Faq NewFaq)
+        {
+            try
+            {
+                db.Faq.Add(NewFaq);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult FaqDelete(int? id)
+        {
+            foreach (var item in db.Faq.ToList())
+            {
+                if (item.FaqId == Convert.ToInt32(id))
+                {
+                    db.Faq.Remove(item);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index");
+        }
 
         //to upload photos to the database (Main part of about page)
         public void SavePic(int num, HttpPostedFileBase aboutPagePic, AboutPage item)
@@ -136,7 +222,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
             var fileName = aboutPagePic.FileName;
             var Extension = Path.GetExtension(fileName);
             var File = fileName;
-            var FilePath = Path.Combine(Server.MapPath("~/Images"), File);
+            var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), File);
             aboutPagePic.SaveAs(FilePath);
             if (num == 1)
             {
@@ -149,5 +235,6 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
             db.SaveChanges();
         }
+        //------------------------------------------------------------------
     }
 }

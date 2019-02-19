@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "ContactForm";
+}
+
+<div id="wrapper">
+    @Html.Partial("SideBarPartial")
+    <div id="content-wrapper">
+        <table " id="dataTable"></table>
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Contact  form</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            @using (Html.BeginForm("ContactForm", "Contact", FormMethod.Post))
+                            {
+                                <div class="form-group ">
+                                    <label for="ContactFormSubject"><strong>Subject</strong></label>
+                                    <input type="text" class="form-control" name="ContactFormSubject" value="@ViewData["Subject"]">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="ContactFormMessage"><strong>Message</strong></label>
+                                    <textarea type="text" class="form-control" name="ContactFormMessage">@ViewData["Message"]</textarea>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="ContactFormName"><strong>Name</strong></label>
+                                    <input type="text" class="form-control" name="ContactFormName" value="@ViewData["Name"]">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="ContactFormEmail"><strong>Email</strong></label>
+                                    <input type="text" class="form-control" name="ContactFormEmail" value="@ViewData["Email"]">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="answer"><strong>Your answer</strong></label>
+                                    <textarea type="text" class="form-control" name="answer"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Respond</button>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

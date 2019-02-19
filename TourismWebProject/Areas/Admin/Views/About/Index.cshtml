@@ -1,13 +1,15 @@
 ﻿@model TourismWebProject.Models.AboutViewModel
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Index";
 }
 
 @*About Page Main Part*@
 <div id="wrapper">
     @Html.Partial("SideBarPartial")
     <div id="content-wrapper">
-        <table " id="dataTable"></table>
+        <table id="dataTable"></table>
         <div class="container-fluid">
             <div class="card mb-3">
                 <div class="card-header">
@@ -35,8 +37,7 @@
                                         <td>@item.AboutPageBackPic</td>
                                         <td>@item.AboutPageBackPicText</td>
                                         <td>@item.AboutPagePic</td>
-                                        <td>@Html.ActionLink("Edit", "MainEdit", "About", new { id = item.AboutPageId}, new { @class = "btn btn-primary" })</td>
-
+                                        <td>@Html.ActionLink("Edit", "MainEdit", "About", new { id = item.AboutPageId }, new { @class = "btn btn-primary" })</td>
                                     </tr>
                                 </tbody>
                             }
@@ -74,7 +75,44 @@
                                         <td>@item.AboutHeading</td>
                                         <td>@item.AboutSubHeading</td>
                                         <td>@item.AboutText</td>
-                                        <td>@Html.ActionLink("Edit", "ItemEdit","About",new { id= item.AboutId },new { @class = "btn btn-primary" })</td>
+                                        <td>@Html.ActionLink("Edit", "ItemEdit", "About", new { id = item.AboutId }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @*About Page Faq Part*@
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> About page Faqs part</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Question</th>
+                                    <th scope="col">Answer</th>
+                                    <th scope="col">Options:  @Html.ActionLink("Add", "Create", "About", new { @class = "btn btn-primary" })</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.Faqs)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@item.FaqId</td>
+                                        <td>@item.FaqQuestion</td>
+                                        <td>@item.FaqAnswer</td>
+                                        <td>@Html.ActionLink("Edit", "FaqEdit", "About", new { id = item.FaqId }, new { @class = "btn btn-primary" })</td>
+                                        <td>@Html.ActionLink("Delete", "FaqDelete", "About", new { id = item.FaqId }, new { @class = "btn btn-primary" })</td>
                                     </tr>
                                 </tbody>
                             }

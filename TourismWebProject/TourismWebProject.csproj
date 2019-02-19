@@ -1687,49 +1687,7 @@
     <Content Include="Assets\fonts\ionicons\css\ionicons.min.css" />
     <Content Include="Assets\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="Assets\fonts\open-iconic\open-iconic.svg" />
-    <Content Include="Assets\images\about.jpg" />
-    <Content Include="Assets\images\bg_1.jpg" />
-    <Content Include="Assets\images\bg_2.jpg" />
-    <Content Include="Assets\images\bg_3.jpg" />
-    <Content Include="Assets\images\bg_4.jpg" />
-    <Content Include="Assets\images\bg_5.jpg" />
-    <Content Include="Assets\images\destination-1.jpg" />
-    <Content Include="Assets\images\destination-2.jpg" />
-    <Content Include="Assets\images\destination-3.jpg" />
-    <Content Include="Assets\images\destination-4.jpg" />
-    <Content Include="Assets\images\destination-5.jpg" />
-    <Content Include="Assets\images\destination-6.jpg" />
-    <Content Include="Assets\images\hotel-1.jpg" />
-    <Content Include="Assets\images\hotel-2.jpg" />
-    <Content Include="Assets\images\hotel-3.jpg" />
-    <Content Include="Assets\images\hotel-4.jpg" />
-    <Content Include="Assets\images\hotel-5.jpg" />
-    <Content Include="Assets\images\hotel-6.jpg" />
-    <Content Include="Assets\images\image_1.jpg" />
-    <Content Include="Assets\images\image_2.jpg" />
-    <Content Include="Assets\images\image_3.jpg" />
-    <Content Include="Assets\images\image_4.jpg" />
-    <Content Include="Assets\images\image_5.jpg" />
-    <Content Include="Assets\images\image_6.jpg" />
-    <Content Include="Assets\images\image_7.jpg" />
-    <Content Include="Assets\images\image_8.jpg" />
-    <Content Include="Assets\images\loc.png" />
-    <Content Include="Assets\images\person_1.jpg" />
-    <Content Include="Assets\images\person_2.jpg" />
-    <Content Include="Assets\images\person_3.jpg" />
-    <Content Include="Assets\images\person_4.jpg" />
-    <Content Include="Assets\images\restaurant-1.jpg" />
-    <Content Include="Assets\images\restaurant-2.jpg" />
-    <Content Include="Assets\images\restaurant-3.jpg" />
-    <Content Include="Assets\images\restaurant-4.jpg" />
-    <Content Include="Assets\images\restaurant-5.jpg" />
-    <Content Include="Assets\images\restaurant-7.jpg" />
-    <Content Include="Assets\images\room-1.jpg" />
-    <Content Include="Assets\images\room-2.jpg" />
-    <Content Include="Assets\images\room-3.jpg" />
-    <Content Include="Assets\images\room-4.jpg" />
-    <Content Include="Assets\images\room-5.jpg" />
-    <Content Include="Assets\images\room-6.jpg" />
+    <Content Include="Assets\Images\bg_2.jpg" />
     <Content Include="Assets\js\aos.js" />
     <Content Include="Assets\js\bootstrap-datepicker.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
@@ -1749,6 +1707,7 @@
     <Content Include="Assets\js\scrollax.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Assets\Images\about.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1806,6 +1765,22 @@
     <Compile Include="Migrations\201902160215373_AllAddedV2.Designer.cs">
       <DependentUpon>201902160215373_AllAddedV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902181536014_updated.cs" />
+    <Compile Include="Migrations\201902181536014_updated.Designer.cs">
+      <DependentUpon>201902181536014_updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902190859136_UpdatedV1.cs" />
+    <Compile Include="Migrations\201902190859136_UpdatedV1.Designer.cs">
+      <DependentUpon>201902190859136_UpdatedV1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191653155_Test.cs" />
+    <Compile Include="Migrations\201902191653155_Test.Designer.cs">
+      <DependentUpon>201902191653155_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191727144_UpdatedV2.cs" />
+    <Compile Include="Migrations\201902191727144_UpdatedV2.Designer.cs">
+      <DependentUpon>201902191727144_UpdatedV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
     <Compile Include="Models\AboutViewModel.cs" />
@@ -1820,6 +1795,7 @@
     <Compile Include="Models\CommentType.cs" />
     <Compile Include="Models\ContactForm.cs" />
     <Compile Include="Models\ContactPage.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\Fact.cs" />
     <Compile Include="Models\Faq.cs" />
     <Compile Include="Models\HomePage.cs" />
@@ -1870,7 +1846,6 @@
     <Content Include="Assets\fonts\open-iconic\open-iconic.ttf" />
     <Content Include="Assets\fonts\open-iconic\open-iconic.woff" />
     <Content Include="Assets\fonts\_DS_Store" />
-    <Content Include="Assets\images\_DS_Store" />
     <Content Include="Assets\js\_DS_Store" />
     <Content Include="Assets\scss\bootstrap\bootstrap-grid.scss" />
     <Content Include="Assets\scss\bootstrap\bootstrap-reboot.scss" />
@@ -2132,6 +2107,10 @@
     <Content Include="Areas\Admin\Views\Tours\Index.cshtml" />
     <Content Include="Areas\Admin\Views\About\MainEdit.cshtml" />
     <Content Include="Areas\Admin\Views\About\ItemEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\About\FaqEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\MainEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\ContactForm.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2144,7 +2123,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Public\Models\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902151056287_DatabaseV1Added.resx">
@@ -2173,6 +2151,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902160215373_AllAddedV2.resx">
       <DependentUpon>201902160215373_AllAddedV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902181536014_updated.resx">
+      <DependentUpon>201902181536014_updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902190859136_UpdatedV1.resx">
+      <DependentUpon>201902190859136_UpdatedV1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191653155_Test.resx">
+      <DependentUpon>201902191653155_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191727144_UpdatedV2.resx">
+      <DependentUpon>201902191727144_UpdatedV2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
