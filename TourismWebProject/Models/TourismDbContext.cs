@@ -38,11 +38,7 @@ namespace TourismWebProject.Models
 
         public DbSet<Admin> Admin { get; set; }
 
-        public DbSet<Tag> Tag { get; set; }
-
         public DbSet<BlogCategory> BlogCategory { get; set; }
-
-        public DbSet<BlogDetail> BlogDetail { get; set; }
 
         public DbSet<BlogItem> BlogItem { get; set; }
 

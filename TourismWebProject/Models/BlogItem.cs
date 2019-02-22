@@ -10,15 +10,7 @@ namespace TourismWebProject.Models
     [Table(name:"BlogItems")]
     public class BlogItem
     {
-        public BlogItem()
-        {
-            Tag = new HashSet<Tag>();
-
-            BlogCategory = new HashSet<BlogCategory>();
-
-            BlogDetail = new HashSet<BlogDetail>();
-
-        }
+       
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -28,17 +20,15 @@ namespace TourismWebProject.Models
         [MaxLength(100)]
         public string BlogItemSource { get; set; }
 
+        [Required]
+        public DateTime DateTime { get; set; }
 
         public int AdminId { get; set; }
 
         [ForeignKey("AdminId")]
         public Admin Admin { get; set; }
 
-        public ICollection<Tag> Tag { get; set; }
-
-        public ICollection<BlogCategory> BlogCategory { get; set; }
-
-        public ICollection<BlogDetail> BlogDetail { get; set; }
+      public ICollection<BlogCategory> BlogCategory { get; set; }
 
     }
 }

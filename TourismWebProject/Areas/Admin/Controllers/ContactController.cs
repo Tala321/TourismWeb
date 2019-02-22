@@ -44,9 +44,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
                     ViewData["ContactPageEmail"] = item.ContactEmail.ToString();
                     ViewData["ContactPageOfficeLocation"] = item.ContactOfficeLocation.ToString();
                 }
-
             }
-
             return View();
         }
 

@@ -1,6 +1,0 @@
-<figure class="easyimage easyimage-side"><img alt="" src="blob:http://localhost:65098/07ce7111-0b9e-41ee-b4b5-984fedbe1e96" width="1280" />
-<figcaption></figcaption>
-</figure>
-
-<p>&nbsp;</p>
-

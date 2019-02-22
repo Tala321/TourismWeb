@@ -11,11 +11,7 @@ namespace TourismWebProject.Models
 
         public List<BlogItem> blogItems { get; set; }
 
-        public List<BlogDetail> blogDetails { get; set; }
-
         public List<BlogCategory> blogCategories { get; set; }
-
-        public List<Tag> tags { get; set; }
 
         public List<Comment> comments { get; set; }
     }

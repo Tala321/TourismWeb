@@ -13,11 +13,11 @@ namespace TourismWebProject.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BlogItemId { get; set; }
+        public int BlogCategoryId { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string BlogItemTitle { get; set; }
+        public string BlogCategoryName { get; set; }
 
         public ICollection<BlogItem> BlogItem { get; set; }
     }

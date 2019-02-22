@@ -17,14 +17,16 @@
                 <div class="card-body">
                     <div class="table-responsive ">
                         <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
-                            <form runat="server">
-                                <FTB: FreeTextBox id="FreeTextBox1" runat="Server" />
-
-
+                            @using (Html.BeginForm("BlogItemCreate", "Blogs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <textarea name="BlogItemSource" id="text"></textarea>
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-
-
+                            }
+                            <asp:TextBox runat="server" id="text" TextMode="MultiLine"></asp:TextBox>
+                            <script>
+                                   CKEDITOR.replace("text")
+                                  CKFinder.setupCKEditor(null,'@Url.Content("~/ckfinder/")')
+                            </script>
                         </table>
                     </div>
                 </div>

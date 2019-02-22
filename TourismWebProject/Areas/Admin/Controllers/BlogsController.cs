@@ -43,7 +43,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public ActionResult MainEdit([Bind(Exclude = "BlogtBackPic")]BlogPage blogPage, HttpPostedFileBase BlogtBackPic)
+        public ActionResult MainEdit([Bind(Exclude = "BlogBackPic")]BlogPage blogPage, HttpPostedFileBase BlogBackPic)
         {
             foreach (var item in db.BlogPage.ToList())
             {
@@ -55,10 +55,9 @@ namespace TourismWebProject.Areas.Admin.Controllers
                         {
                             item.BlogBackPicText = blogPage.BlogBackPicText;
                         }
-                        if (BlogtBackPic != null)
+                        if (BlogBackPic != null)
                         {
-                            //SavePic(BlogBackPic, item);
-
+                            SavePic(BlogBackPic, item);
                         }
                         db.SaveChanges();
                     }
@@ -81,8 +80,6 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
             var dir = Server.MapPath("~\\BlogItems");
 
-
-
             foreach (var item in db.BlogItem.ToList())
             {
                 if (item.BlogItemId == Convert.ToInt32(id))
@@ -95,34 +92,21 @@ namespace TourismWebProject.Areas.Admin.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult BlogItemEdit([Bind(Exclude = "BlogItemPic")] BlogItem blogItem, HttpPostedFileBase BlogItemPic)
-        //{
-        //    foreach (var item in db.BlogItem.ToList())
-        //    {
-        //        try
-        //        {
-        //            if (item.BlogItemId == Convert.ToInt32(TempData["BlogItemId"]))
-        //            {
-        //                if (blogItem.BlogItemText.Length > 0)
-        //                {
-        //                    item.BlogItemText = blogItem.BlogItemText;
-        //                }
-        //                if (BlogItemPic != null)
-        //                {
-        //                    SavePic(BlogItemPic, item);
-
-        //                }
-        //                db.SaveChanges();
-        //            }
-        //        }
-        //        catch
-        //        {
-        //            break;
-        //        }
-        //    }
-        //    return RedirectToAction("Index");
-       // }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult BlogItemEdit(BlogItem blogItem)
+        {
+            foreach (var item in db.BlogItem.ToList())
+            {
+                if (item.BlogItemId == Convert.ToInt32(TempData["BlogItemId"]))
+                {
+                    var dir = Server.MapPath("~\\BlogItems");
+                    var file = Path.Combine(dir, item.BlogItemSource);
+                    System.IO.File.WriteAllText(file, blogItem.BlogItemSource);
+                }
+            }
+            return RedirectToAction("Index");
+        }
         ////-------------------------------------------------------------------
 
         //Create Blog item-------------------------------------------------------------------
@@ -130,8 +114,6 @@ namespace TourismWebProject.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult BlogItemCreate()
         {
-            
-
             return View();
         }
 
@@ -151,6 +133,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
             tw.WriteLine(blogItem.BlogItemSource);
             tw.Close();
             blogItem.BlogItemSource = fileName;
+            blogItem.DateTime = DateTime.Now;
             blogItem.AdminId = 1;//Admin example===========================================================
             db.BlogItem.Add(blogItem);
             db.SaveChanges();
@@ -159,24 +142,71 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
         //-------------------------------------------------------------------
 
+        ////Create Category item-------------------------------------------------------------------
+        [HttpGet]
+        public ActionResult CategoryCreate()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CategoryCreate(BlogCategory blogCategory)
+        {
+            db.BlogCategory.Add(blogCategory);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        ////-------------------------------------------------------------------
+
+        ////Edit Category item-------------------------------------------------------------------
+        [HttpGet]
+        public ActionResult CategoryEdit(int? id)
+        {
+            TempData["BlogCategoryId"] = id;
+
+
+            foreach (var item in db.BlogCategory.ToList())
+            {
+                if (item.BlogCategoryId == Convert.ToInt32(id))
+                {
+                    ViewData["BlogCategoryName"] = item.BlogCategoryName;
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CategoryEdit(BlogCategory blogCategory)
+        {
+            foreach (var item in db.BlogCategory.ToList())
+            {
+                if (item.BlogCategoryId == Convert.ToInt32(TempData["BlogCategoryId"]))
+                {
+                    if (blogCategory.BlogCategoryName.Length > 0)
+                    {
+                        item.BlogCategoryName = blogCategory.BlogCategoryName;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+            }
+            return RedirectToAction("Index");
+        }
+        ////-------------------------------------------------------------------
+
 
         //to upload photos to the database (Blog page)
-        public void SavePic(HttpPostedFileBase BlogtBackPic, BlogPage blogPage)
+        public void SavePic(HttpPostedFileBase BlogBackPic, BlogPage blogPage)
         {
-            var fileName = BlogtBackPic.FileName;
+            var fileName = BlogBackPic.FileName;
             var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), fileName);
-            BlogtBackPic.SaveAs(FilePath);
+            BlogBackPic.SaveAs(FilePath);
             blogPage.BlogtBackPic = fileName;
-            db.SaveChanges();
-        }
-        //------------------------------------------------------------------
-
-        //to upload photos to the database ( Blog item)
-        public void SavePic(HttpPostedFileBase BlogtBackPic, BlogItem blogItem)
-        {
-            var fileName = BlogtBackPic.FileName;
-            var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), fileName);
-            BlogtBackPic.SaveAs(FilePath);
             db.SaveChanges();
         }
         //------------------------------------------------------------------
