@@ -39,6 +39,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                     var file = Path.Combine(dir, item.BlogItemSource);
                     var fileContent = System.IO.File.ReadAllText(file);
                     ViewData["BlogItem"] = fileContent;
+
                 }
             }
 
