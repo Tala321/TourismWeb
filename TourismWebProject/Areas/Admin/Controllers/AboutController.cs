@@ -216,21 +216,19 @@ namespace TourismWebProject.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        //to upload photos to the database (Main part of about page)
+        //to upload photos to the database 
         public void SavePic(int num, HttpPostedFileBase aboutPagePic, AboutPage item)
         {
             var fileName = aboutPagePic.FileName;
-            var Extension = Path.GetExtension(fileName);
-            var File = fileName;
-            var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), File);
+            var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), fileName);
             aboutPagePic.SaveAs(FilePath);
             if (num == 1)
             {
-                item.AboutPageBackPic = File;
+                item.AboutPageBackPic = fileName;
             }
             else
             {
-                item.AboutPagePic = File;
+                item.AboutPagePic = fileName;
             }
 
             db.SaveChanges();

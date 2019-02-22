@@ -26,21 +26,8 @@ namespace TourismWebProject.Models
 
         [Required]
         [MaxLength(100)]
-        public string BlogItemTitle { get; set; }
+        public string BlogItemSource { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string BlogItemPic { get; set; }
-
-        [Required]
-        public string BlogItemText { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string BlogItemAuthor { get; set; }
-
-        [Required]
-        public DateTime BlogItemDate { get; set; }
 
         public int AdminId { get; set; }
 

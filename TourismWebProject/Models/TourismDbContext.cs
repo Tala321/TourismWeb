@@ -30,6 +30,8 @@ namespace TourismWebProject.Models
 
         public DbSet<ContactForm> ContactForm { get; set; }
 
+        public DbSet<Comment> Comment { get; set; }
+
         public DbSet<UserType> UserType { get; set; }
 
         public DbSet<BlogPage> BlogPage { get; set; }

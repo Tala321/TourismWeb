@@ -1,7 +1,83 @@
-﻿
+﻿@model TourismWebProject.Models.BlogViewModel
+
 @{
     ViewBag.Title = "Index";
 }
 
-@Html.Partial("SideBarPartial")
+@*Blog Page Main Part*@
+<div id="wrapper">
+    @Html.Partial("SideBarPartial")
+    <div id="content-wrapper">
+        <table id="dataTable"></table>
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Blog page main part</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Background Picture</th>
+                                    <th scope="col">Background Picture Text</th>
+                                    <th scope="col">Options</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.blogPage)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@item.BlogId</td>
+                                        <td>@item.BlogBackPicText</td>
+                                        <td>@item.BlogtBackPic</td>
+                                        <td>@Html.ActionLink("Edit", "MainEdit", "Blogs", new { id = item.BlogId }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+
+        @*Blog Page Items Part*@
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Blog page items part</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Author Id</th>
+                                    <th scope="col">Source</th>
+                                    <th scope="col">Options:@Html.ActionLink("Add", "BlogItemCreate", "Blogs", new { @class = "btn btn-primary" })</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.blogItems)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@item.BlogItemId</td>
+                                        <td>@item.AdminId</td>
+                                        <td>@item.BlogItemSource</td>
+                                        <td>@Html.ActionLink("Edit", "BlogItemEdit", "Blogs", new { id = item.BlogItemId }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+       

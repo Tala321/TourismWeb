@@ -122,11 +122,9 @@ namespace TourismWebProject.Areas.Admin.Controllers
         public void SavePic(HttpPostedFileBase contactPagePic, ContactPage item)
         {
             var fileName = contactPagePic.FileName;
-            var Extension = Path.GetExtension(fileName);
-            var File = fileName;
-            var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), File);
+            var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), fileName);
             contactPagePic.SaveAs(FilePath);
-            item.ContactBackPic = File;
+            item.ContactBackPic = fileName;
             db.SaveChanges();
         }
 
