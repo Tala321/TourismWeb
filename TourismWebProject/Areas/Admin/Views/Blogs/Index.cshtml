@@ -57,8 +57,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Author Id</th>
                                     <th scope="col">Source</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Cover photo</th>
+                                    <th scope="col">Category Id</th>
+                                    <th scope="col">Author</th>
                                     <th scope="col">Options:@Html.ActionLink("Add", "BlogItemCreate", "Blogs", new { @class = "btn btn-primary" })</th>
                                 </tr>
                             </thead>
@@ -67,8 +70,11 @@
                                 <tbody>
                                     <tr>
                                         <td>@item.BlogItemId</td>
-                                        <td>@item.AdminId</td>
                                         <td>@item.BlogItemSource</td>
+                                        <td>@item.BlogItemTitle</td>
+                                        <td>@item.BlogItemCover</td>
+                                        <td>@item.BlogCategoryId</td>
+                                        <td>@item.BlogItemAuthor</td>
                                         <td>@Html.ActionLink("Edit", "BlogItemEdit", "Blogs", new { id = item.BlogItemId }, new { @class = "btn btn-primary" })</td>
                                     </tr>
                                 </tbody>

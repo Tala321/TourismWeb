@@ -20,6 +20,20 @@ namespace TourismWebProject.Models
         [MaxLength(100)]
         public string BlogItemSource { get; set; }
 
+
+        [Required]
+        [MaxLength(100)]
+        public string BlogItemTitle { get; set; }
+
+
+        [Required]
+        [MaxLength(100)]
+        public string BlogItemCover { get; set; }
+
+        [Required]
+        [MaxLength(150)]
+        public string BlogItemAuthor { get; set; }
+
         [Required]
         public DateTime DateTime { get; set; }
 
@@ -28,7 +42,10 @@ namespace TourismWebProject.Models
         [ForeignKey("AdminId")]
         public Admin Admin { get; set; }
 
-      public ICollection<BlogCategory> BlogCategory { get; set; }
+        public int BlogCategoryId { get; set; }
+
+        [ForeignKey("BlogCategoryId")]
+        public BlogCategory BlogCategory { get; set; }
 
     }
 }

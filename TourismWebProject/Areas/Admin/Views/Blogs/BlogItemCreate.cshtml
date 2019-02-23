@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TourismWebProject.Models.BlogCategory>
 @{
     ViewBag.Title = "BlogItemCreate";
 }
@@ -19,7 +19,23 @@
                         <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
                             @using (Html.BeginForm("BlogItemCreate", "Blogs", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
+                                <div class="form-group ">
+                                    <label for="BlogItemTitle">Title</label>
+                                    <input type="text" class="form-control" name="BlogItemTitle">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="BlogItemCover">Cover photo</label>
+                                    <input type="file" class="form-control" name="BlogItemCover">
+                                </div>
                                 <textarea name="BlogItemSource" id="text"></textarea>
+                                <div class="form-group mt-2">
+                                    <label for="BlogItemAuthor">Author</label>
+                                    <input type="text" class="form-control" name="BlogItemAuthor" value="@ViewData["BlogItemAuthor"]">
+                                </div>
+                                <div class="mt-3 form-group">
+                                    <h4>Select Category</h4>
+                                    @Html.DropDownList("BlogCategoryId", new SelectList(ViewBag.Category, "BlogCategoryId", "BlogCategoryName"), new { @class = "form-control" })
+                                </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             }
                             <asp:TextBox runat="server" id="text" TextMode="MultiLine"></asp:TextBox>

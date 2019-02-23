@@ -10,6 +10,10 @@ namespace TourismWebProject.Models
     [Table(name: "BlogCategories")]
     public class BlogCategory
     {
+        public BlogCategory()
+        {
+            BlogItem = new HashSet<BlogItem>();
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -19,6 +23,6 @@ namespace TourismWebProject.Models
         [MaxLength(100)]
         public string BlogCategoryName { get; set; }
 
-        public ICollection<BlogItem> BlogItem { get; set; }
+       public ICollection<BlogItem> BlogItem { get; set; }
     }
 }
