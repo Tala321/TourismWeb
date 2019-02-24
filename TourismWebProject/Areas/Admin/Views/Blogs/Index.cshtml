@@ -117,6 +117,46 @@
                 </div>
             </div>
         </div>
+
+        @*Blog Page Comment Part*@
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Blog page Comment part</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Comment Date</th>
+                                    <th scope="col">User Id</th>
+                                    <th scope="col">Blog item Id</th>
+                                    <th scope="col">Text</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.comments)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@item.CommentId</td>
+                                        <td>@item.CommentDate.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.UserId</td>
+                                        <td>@item.BlogItemId</td>
+                                        <td>@item.CommentText</td>
+                                        <td>@item.Status</td>
+                                        <td>@Html.ActionLink("Check", "Comment", "Blogs", new { id = item.CommentId }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Comment";
+}
+
+<div id="wrapper">
+    @Html.Partial("SideBarPartial")
+    <div id="content-wrapper">
+        <table " id="dataTable"></table>
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Comment  </strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            @using (Html.BeginForm("Comment", "Blogs", FormMethod.Post))
+                            {
+                                <div class="form-group ">
+                                    <label for="CommentText"><strong>Comment text</strong></label>
+                                    <textarea type="text" class="form-control" name="CommentText">@ViewData["CommentText"] </textarea>
+                                </div>
+                                <div class="mt-3 form-group">
+                                    <h4>Select Status</h4>
+                                    @Html.DropDownList("Status", new SelectList(ViewBag.Status, "StatusName", "StatusId"), new { @class = "form-control" })
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

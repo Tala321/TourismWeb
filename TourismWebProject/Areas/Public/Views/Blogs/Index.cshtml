@@ -2,6 +2,15 @@
 
 @{
     ViewBag.Title = "Index";
+
+    double pageCount = Model.blogItems.Count() / 8.0;
+
+    //to store blogitems
+    IEnumerable<TourismWebProject.Models.BlogItem> a;
+
+    //to store the amount of the selected category items
+    int CategoryItemCount = 0;
+
 }
 
 @foreach (var item in Model.blogPage)
@@ -19,13 +28,24 @@
     </div>
 }
 
+
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row d-flex">
-            @foreach (var item in Model.blogItems)
+            @if (Convert.ToInt32(ViewData["PageNum"]) == 0 || ViewData["PageNum"] == null)
+            {
+                a = Model.blogItems.Take(8);
+            }
+            else
+            {
+                a = Model.blogItems.Skip(8 * Convert.ToInt32(ViewData["PageNum"]));
+            }
+
+            @foreach (var item in a)
             {
                 if (item.BlogCategoryId == Convert.ToInt32(ViewData["CategoryId"]) || ViewData["CategoryId"] == null)
                 {
+                    CategoryItemCount++;
                     <div class="col-md-3 d-flex ftco-animate">
                         <div class="blog-entry align-self-stretch">
                             <a href="~/Public/Blogs/Single/@item.BlogItemId" class="block-20" style="background-image: url(/Assets/BlogImages/images/@item.BlogItemCover);">
@@ -45,19 +65,51 @@
                 }
             }
         </div>
-        <div class="row mt-5">
-            <div class="col text-center">
-                <div class="block-27">
-                    <ul>
-                        <li><a href="#">&lt;</a></li>
-                       
-                        <li><span>1</span></li>
-                                                              
-                        <li><a href="#">&gt;</a></li>
-                    </ul>
+        @if (ViewData["CategoryId"] == null)
+        {
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            @if (ViewData["CategoryId"] == null)
+                            {
+                                if ((pageCount % 1) == 0)
+                                {
+                                    for (var i = 1; pageCount >= i; i++)
+                                    {
+                                        <li><a href="~/Public/Blogs/Page/@i">@i</a></li>
+                                    }
+                                }
+                                else
+                                {
+                                    for (var i = 1; Math.Truncate(pageCount) + 1 >= i; i++)
+                                    {
+                                        <li><a href="~/Public/Blogs/Page/@i">@i</a></li>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if ((CategoryItemCount % 1) == 0)
+                                {
+                                    for (var i = 1; pageCount >= i; i++)
+                                    {
+                                        <li><a href="~/Public/Blogs/Page/@i">@i</a></li>
+                                    }
+                                }
+                                else
+                                {
+                                    for (var i = 1; CategoryItemCount + 1 >= i; i++)
+                                    {
+                                        <li><a href="~/Public/Blogs/Page/@i">@i</a></li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </section>
 

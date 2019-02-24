@@ -19,7 +19,8 @@ namespace TourismWebProject.Areas.Admin.Controllers
             {
                 blogPage = db.BlogPage.ToList(),
                 blogItems = db.BlogItem.ToList(),
-                blogCategories = db.BlogCategory.ToList()
+                blogCategories = db.BlogCategory.ToList(),
+                comments=db.Comment.ToList()
             };
 
             return View(blogViewModel);
@@ -218,6 +219,41 @@ namespace TourismWebProject.Areas.Admin.Controllers
         }
         ////-------------------------------------------------------------------
 
+        ////Edit Comment status -------------------------------------------------------------------
+        [HttpGet]
+        public ActionResult Comment(int? id)
+        {
+            TempData["CommentId"] = id;
+
+            foreach (var item in db.Comment.ToList())
+            {
+                if (item.CommentId == Convert.ToInt32(id))
+                {
+                    ViewData["CommentText"] = item.CommentText;
+                }
+            }
+
+            ViewBag.Status = db.Status.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Comment(Comment comment)
+        {
+            foreach (var item in db.Comment.ToList())
+            {
+                if (item.CommentId == Convert.ToInt32(TempData["CommentId"]))
+                {
+                    item.CommentText = comment.CommentText;
+                    item.Status = comment.Status;
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+        ////-------------------------------------------------------------------
+
 
         //to upload photos to the database (Blog page)
         public void SavePic(HttpPostedFileBase BlogBackPic, BlogPage blogPage)
@@ -228,7 +264,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
             blogPage.BlogtBackPic = fileName;
             db.SaveChanges();
         }
-        //------------------------------------------------------------------
+  
 
         public void SavePic(HttpPostedFileBase CoverPic, BlogItem blogItem)
         {
@@ -238,5 +274,6 @@ namespace TourismWebProject.Areas.Admin.Controllers
             blogItem.BlogItemCover = fileName;
             db.SaveChanges();
         }
+        //------------------------------------------------------------------
     }
 }

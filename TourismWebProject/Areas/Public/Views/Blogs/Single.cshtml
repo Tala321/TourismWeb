@@ -29,7 +29,7 @@
                     <div class="desc align-self-md-center">
                         @foreach (var item in Model.blogItems.Where(x => x.BlogItemId == Convert.ToInt32(ViewData["BlogItemId"])))
                         {
-                           <h3>@item.BlogItemAuthor.Split('/')[0]</h3>
+                            <h3>@item.BlogItemAuthor.Split('/')[0]</h3>
                             <q>@item.BlogItemAuthor.Split('/')[1]</q>
                         }
                     </div>
@@ -37,114 +37,44 @@
 
 
                 <div class="pt-5 mt-5">
-                    <h3 class="mb-5">6 Comments</h3>
                     <ul class="comment-list">
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="/Assets/images/person_1.jpg" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>John Doe</h3>
-                                <div class="meta">June 27, 2018 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply">Reply</a></p>
-                            </div>
-                        </li>
-
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="/Assets/images/person_1.jpg" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>John Doe</h3>
-                                <div class="meta">June 27, 2018 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply">Reply</a></p>
-                            </div>
-
-                            <ul class="children">
+                        @foreach (var item in Model.comments)
+                        {
+                            if (item.BlogItemId == Convert.ToInt32(ViewData["BlogItemId"]) && item.Status == "Approved")
+                            {
                                 <li class="comment">
                                     <div class="vcard bio">
-                                        <img src="/Assets/images/person_1.jpg" alt="Image placeholder">
+                                        <img src="/Assets/images/@item.User.UserPic" alt="Image placeholder">
                                     </div>
                                     <div class="comment-body">
-                                        <h3>John Doe</h3>
-                                        <div class="meta">June 27, 2018 at 2:21pm</div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                        <p><a href="#" class="reply">Reply</a></p>
+                                        <h3>@item.User.UserName @item.User.UserSurname</h3>
+                                        <div class="meta">@item.CommentDate</div>
+                                        <p>@item.CommentText</p>
                                     </div>
-
-
-                                    <ul class="children">
-                                        <li class="comment">
-                                            <div class="vcard bio">
-                                                <img src="/Assets/images/person_1.jpg" alt="Image placeholder">
-                                            </div>
-                                            <div class="comment-body">
-                                                <h3>John Doe</h3>
-                                                <div class="meta">June 27, 2018 at 2:21pm</div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                <p><a href="#" class="reply">Reply</a></p>
-                                            </div>
-
-                                            <ul class="children">
-                                                <li class="comment">
-                                                    <div class="vcard bio">
-                                                        <img src="/Assets/images/person_1.jpg" alt="Image placeholder">
-                                                    </div>
-                                                    <div class="comment-body">
-                                                        <h3>John Doe</h3>
-                                                        <div class="meta">June 27, 2018 at 2:21pm</div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                        <p><a href="#" class="reply">Reply</a></p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
                                 </li>
-                            </ul>
-                        </li>
-
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="/Assets/images/person_1.jpg" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>John Doe</h3>
-                                <div class="meta">June 27, 2018 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply">Reply</a></p>
-                            </div>
-                        </li>
+                            }
+                        }
                     </ul>
                     <!-- END comment-list -->
 
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
-                        <form action="#" class="p-5 bg-light">
+                        @using (Html.BeginForm("Comment", "Blogs", FormMethod.Post))
+                        {
                             <div class="form-group">
-                                <label for="name">Name *</label>
-                                <input type="text" class="form-control" id="name">
+                                <input name="BlogItemId" type="hidden" value="@ViewData["BlogItemId"]"></input>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" class="form-control" id="email">
+                                <label for="CommentText">Message</label>
+                                <textarea name="CommentText" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="url" class="form-control" id="website">
-                            </div>
+                                <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary" >
 
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                            </div>
 
-                        </form>
+</div>
+                        }
+
                     </div>
                 </div>
 
@@ -157,7 +87,7 @@
                             <h3>Categories</h3>
                             @foreach (var item in Model.blogCategories)
                             {
-                                <li><a href="~/Public/Blogs/Index/@item.BlogCategoryId"> @item.BlogCategoryName</a></li>
+                                <li><a href="~/Public/Blogs/Category/@item.BlogCategoryId"> @item.BlogCategoryName</a></li>
                             }
                         </div>
                     </div>

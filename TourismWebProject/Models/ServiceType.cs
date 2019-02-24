@@ -17,8 +17,7 @@ namespace TourismWebProject.Models
             Tour = new HashSet<Tour>();
 
             Reservation = new HashSet<Reservation>();
-
-            Comment = new HashSet<Comment>();
+            
 
         }
 
@@ -37,6 +36,6 @@ namespace TourismWebProject.Models
 
         public ICollection<Reservation> Reservation { get; set; }
 
-        public ICollection<Comment> Comment { get; set; }
+    
     }
 }

@@ -2680,6 +2680,30 @@
     <Compile Include="Migrations\201902232010127_NewChanges13.Designer.cs">
       <DependentUpon>201902232010127_NewChanges13.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902240805559_NewChanges121.cs" />
+    <Compile Include="Migrations\201902240805559_NewChanges121.Designer.cs">
+      <DependentUpon>201902240805559_NewChanges121.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240811458_NewChanges131.cs" />
+    <Compile Include="Migrations\201902240811458_NewChanges131.Designer.cs">
+      <DependentUpon>201902240811458_NewChanges131.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240830169_NewChanges14.cs" />
+    <Compile Include="Migrations\201902240830169_NewChanges14.Designer.cs">
+      <DependentUpon>201902240830169_NewChanges14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240854205_NewChanges15.cs" />
+    <Compile Include="Migrations\201902240854205_NewChanges15.Designer.cs">
+      <DependentUpon>201902240854205_NewChanges15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240952417_NewChanges16.cs" />
+    <Compile Include="Migrations\201902240952417_NewChanges16.Designer.cs">
+      <DependentUpon>201902240952417_NewChanges16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240955195_NewChanges17.cs" />
+    <Compile Include="Migrations\201902240955195_NewChanges17.Designer.cs">
+      <DependentUpon>201902240955195_NewChanges17.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
     <Compile Include="Models\AboutViewModel.cs" />
@@ -2708,6 +2732,7 @@
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\ServiceType.cs" />
     <Compile Include="Models\SocialMediaLink.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Models\TourismDbContext.cs" />
     <Compile Include="Models\TourPage.cs" />
@@ -3024,6 +3049,7 @@
     <Content Include="ckeditor_4.2.1_standard\ckeditor\skins\moono\readme.md" />
     <Content Include="Areas\Admin\Views\Blogs\CategoryCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Blogs\CategoryEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Comment.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3131,6 +3157,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902232010127_NewChanges13.resx">
       <DependentUpon>201902232010127_NewChanges13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240805559_NewChanges121.resx">
+      <DependentUpon>201902240805559_NewChanges121.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240811458_NewChanges131.resx">
+      <DependentUpon>201902240811458_NewChanges131.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240830169_NewChanges14.resx">
+      <DependentUpon>201902240830169_NewChanges14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240854205_NewChanges15.resx">
+      <DependentUpon>201902240854205_NewChanges15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240952417_NewChanges16.resx">
+      <DependentUpon>201902240952417_NewChanges16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240955195_NewChanges17.resx">
+      <DependentUpon>201902240955195_NewChanges17.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -14,5 +14,6 @@ namespace TourismWebProject.Models
         public List<BlogCategory> blogCategories { get; set; }
 
         public List<Comment> comments { get; set; }
+
     }
 }

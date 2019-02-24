@@ -18,22 +18,20 @@ namespace TourismWebProject.Models
         public string CommentText { get; set; }
 
         [Required]
+        public string Status { get; set; }
+
+        [Required]
         public DateTime CommentDate { get; set; }
-
-        public int CommentTypeId { get; set; }
-
-        [ForeignKey("CommentTypeId")]
-        public CommentType CommentType { get; set; }
-
-        public int ServiceTypeId { get; set; }
-
-        [ForeignKey("ServiceTypeId")]
-        public ServiceType ServiceType { get; set; }
 
         public int UserId { get; set; }
 
         [ForeignKey("UserId")]
         public User User { get; set; }
+
+        public int BlogItemId { get; set; }
+
+        [ForeignKey("BlogItemId")]
+        public BlogItem BlogItem { get; set; }
 
     }
 }

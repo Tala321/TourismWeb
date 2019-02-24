@@ -61,5 +61,7 @@ namespace TourismWebProject.Models
         public DbSet<TourPage> TourPage { get; set; }
 
         public DbSet<ServiceType> ServiceType { get; set; }
+
+        public DbSet<Status> Status { get; set; }
     }
 }

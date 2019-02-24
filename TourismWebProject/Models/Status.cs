@@ -7,19 +7,15 @@ using System.Web;
 
 namespace TourismWebProject.Models
 {
-    [Table(name: "CommentTypes")]
-    public class CommentType
+    [Table(name: "Statuses")]
+    public class Status
     {
-        
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CommentTypeId { get; set; }
+        public int StatusId { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string CommentTypeName { get; set; }
-
-     
-
+        public string StatusName { get; set; }
     }
 }
