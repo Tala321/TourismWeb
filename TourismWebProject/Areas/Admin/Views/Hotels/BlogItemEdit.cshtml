@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "BlogItemEdit";
+}
+
+
+<div id="wrapper">
+    @Html.Partial("SideBarPartial")
+    <div id="content-wrapper">
+        <table " id="dataTable"></table>
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Add a hotel</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            @using (Html.BeginForm("HotelEdit", "Hotels", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="form-group ">
+                                    <label for="HotelName"> Name:</label>
+                                    <input type="text" class="form-control" name="HotelName" value="@ViewData["HotelName"] ">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="HotelAddress"> Address:</label>
+                                    <input type="text" class="form-control" name="HotelAddress" value="@ViewData["HotelAddress"]">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="HotelPic"> Photos:</label>
+                                    <input type='file' multiple id='fileUpload' name="HotelPic" data-url="@Url.Action("HotelCreate", "Hotels")" />
+                                </div>
+                                <div class="form-group ">
+                                    <label for="HotelDescription"> Description:</label><br />
+                                    <textarea type='text' width="100%" name="HotelDescription" style="width: 100%;"> @ViewData["HotelDescription"] </textarea>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="HotelRating"> Star rating:</label>
+                                    @Html.DropDownList("RatingId", new SelectList(ViewBag.SratTaring, "RatingId", "RatingStar"), new { @class = "form-control" })
+                                </div>
+                                <div class="form-group ">
+                                    <label for="HotelCountry"> Country:</label><br />
+                                    <select class="crs-country" data-region-id="ABC" name="HotelCountry"></select>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="HotelCity">City:</label><br />
+                                    <select class="crs-country" name="HotelCity" id="ABC"></select>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="HotelStatus"> Star rating:</label>
+                                    @Html.DropDownList("StatusName", new SelectList(ViewBag.SratTaring, "StatusId", "StatusName"), new { @class = "form-control" })
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -10,12 +10,6 @@ namespace TourismWebProject.Models
     [Table(name: "Locations")]
     public class Location
     {
-        public Location()
-        {
-            Hotel = new HashSet<Hotel>();
-
-            Tour = new HashSet<Tour>();
-        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,9 +23,6 @@ namespace TourismWebProject.Models
         [MaxLength(50)]
         public string LocationCityName { get; set; }
 
-        public ICollection<Hotel> Hotel { get; set; }
-
-        public ICollection<Tour> Tour { get; set; }
 
     }
 }

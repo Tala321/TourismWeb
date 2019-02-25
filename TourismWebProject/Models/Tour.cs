@@ -37,11 +37,6 @@ namespace TourismWebProject.Models
         public bool TourStatus { get; set; }
 
 
-        public int LocationId { get; set; }
-
-        [ForeignKey("LocationId")]
-        public Location Location { get; set; }
-
         public int RatingId { get; set; }
 
         [ForeignKey("RatingId")]

@@ -1,7 +1,96 @@
-﻿
+﻿@model TourismWebProject.Models.HotelViewModel
+
 @{
     ViewBag.Title = "Index";
 }
 
-@Html.Partial("SideBarPartial")
+
+@*Hotel Page Main Part*@
+<div id="wrapper">
+    @Html.Partial("SideBarPartial")
+    <div id="content-wrapper">
+        <table id="dataTable"></table>
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Blog page main part</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Background Picture</th>
+                                    <th scope="col">Background Picture Text</th>
+                                    <th scope="col">Options</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.HotelPage)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@item.HotelPageId</td>
+                                        <td>@item.HotelPageBackPicText</td>
+                                        <td>@item.HotelPageBackPic</td>
+                                        <td>@Html.ActionLink("Edit", "MainEdit", "Hotels", new { id = item.HotelPageId }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*Hotel Part*@
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Hotel part</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Photos file</th>
+                                    <th scope="col">Rating </th>
+                                    <th scope="col">Country</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col">Description </th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Options:@Html.ActionLink("Add", "HotelCreate", "Hotels", new { @class = "btn btn-primary" })</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.Hotel)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@item.HotelId</td>
+                                        <td>@item.HotelName</td>
+                                        <td>@item.HotelAddress</td>
+                                        <td>@item.HotelPic</td>
+                                        <td>@item.RatingId</td>
+                                        <td>@item.HotelCountry</td>
+                                        <td>@item.HotelCity</td>
+                                        <td>@item.HotelDescription.Split(',')[0]</td>
+                                        <td>@item.HotelStatus</td>
+                                        <td>@Html.ActionLink("Edit", "HotelEdit", "Hotels", new { id = item.HotelId }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 

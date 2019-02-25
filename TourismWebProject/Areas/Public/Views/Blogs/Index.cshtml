@@ -6,7 +6,7 @@
     double pageCount = Model.blogItems.Count() / 8.0;
 
     //to store blogitems
-    IEnumerable<TourismWebProject.Models.BlogItem> a;
+    IEnumerable<TourismWebProject.Models.BlogItem> blogItems;
 
     //to store the amount of the selected category items
     int CategoryItemCount = 0;
@@ -34,14 +34,14 @@
         <div class="row d-flex">
             @if (Convert.ToInt32(ViewData["PageNum"]) == 0 || ViewData["PageNum"] == null)
             {
-                a = Model.blogItems.Take(8);
+                blogItems = Model.blogItems.Take(8);
             }
             else
             {
-                a = Model.blogItems.Skip(8 * Convert.ToInt32(ViewData["PageNum"]));
+                blogItems = Model.blogItems.Skip(8 * Convert.ToInt32(ViewData["PageNum"]));
             }
 
-            @foreach (var item in a)
+            @foreach (var item in blogItems)
             {
                 if (item.BlogCategoryId == Convert.ToInt32(ViewData["CategoryId"]) || ViewData["CategoryId"] == null)
                 {

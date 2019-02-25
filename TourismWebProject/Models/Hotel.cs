@@ -25,19 +25,25 @@ namespace TourismWebProject.Models
 
 
         [Required]
-        public int HotelRating { get; set; }
-
-        [Required]
         public string HotelDescription { get; set; }
 
 
         [Required]
-        public bool HotelStatus { get; set; }
+        public string HotelCountry { get; set; }
 
-        public int LocationId { get; set; }
+        [Required]
+        public string HotelCity { get; set; }
 
-        [ForeignKey("LocationId")]
-        public Location Location { get; set; }
+        [Required]
+        public string HotelPic { get; set; }
+
+
+        [Required]
+        public string HotelCoverPic { get; set; }
+
+        [Required]
+        public int HotelStatus { get; set; }
+
 
         public int RatingId { get; set; }
 

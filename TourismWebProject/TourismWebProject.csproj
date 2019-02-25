@@ -1666,9 +1666,9 @@
     <Content Include="Areas\Admin\Assets\vendor\jquery\jquery.min.js" />
     <Content Include="Areas\Admin\Assets\vendor\jquery\jquery.slim.js" />
     <Content Include="Areas\Admin\Assets\vendor\jquery\jquery.slim.min.js" />
-    <Content Include="Assets\BlogImages\images\image_7.jpg" />
-    <Content Include="Assets\BlogImages\images\image_8.jpg" />
-    <Content Include="Assets\BlogImages\images\wew.png" />
+    <Content Include="Areas\Admin\Assets\js\crs.min.js" />
+    <Content Include="Assets\ItemImages\images\image_7.jpg" />
+    <Content Include="Assets\ItemImages\images\image_8.jpg" />
     <Content Include="Assets\css\ajax-loader.gif" />
     <Content Include="Assets\css\animate.css" />
     <Content Include="Assets\css\aos.css" />
@@ -1697,6 +1697,7 @@
     <Content Include="Assets\fonts\open-iconic\open-iconic.svg" />
     <Content Include="Assets\Images\bg_2.jpg" />
     <Content Include="Assets\Images\bg_4.jpg" />
+    <Content Include="Assets\Images\bg_5.jpg" />
     <Content Include="Assets\js\aos.js" />
     <Content Include="Assets\js\bootstrap-datepicker.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
@@ -1714,6 +1715,15 @@
     <Content Include="Assets\js\popper.min.js" />
     <Content Include="Assets\js\range.js" />
     <Content Include="Assets\js\scrollax.min.js" />
+    <Content Include="BlogItems\blogItem1.txt" />
+    <Content Include="BlogItems\blogItem2.txt" />
+    <Content Include="BlogItems\blogItem3.txt" />
+    <Content Include="BlogItems\blogItem4.txt" />
+    <Content Include="BlogItems\blogItem5.txt" />
+    <Content Include="BlogItems\blogItem6.txt" />
+    <Content Include="BlogItems\blogItem7.txt" />
+    <Content Include="BlogItems\blogItem8.txt" />
+    <Content Include="BlogItems\blogItem9.txt" />
     <Content Include="ckeditor_4.2.1_standard\ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor_4.2.1_standard\ckeditor\build-config.js" />
     <Content Include="ckeditor_4.2.1_standard\ckeditor\ckeditor.js" />
@@ -2534,6 +2544,19 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Assets\Images\about.jpg" />
+    <Content Include="HotelItems\hotelItems1.txt" />
+    <Content Include="HotelItems\hotelItems2.txt" />
+    <Content Include="HotelItems\hotelItems3.txt" />
+    <Content Include="HotelItems\hotelItems4.txt" />
+    <Content Include="HotelItems\hotelItems5.txt" />
+    <Content Include="HotelItems\hotelItems6.txt" />
+    <Content Include="HotelItems\hotelItems7.txt" />
+    <Content Include="HotelItems\hotelItems8.txt" />
+    <Content Include="HotelItems\hotelItems9.txt" />
+    <Content Include="HotelItems\Images\hotel-1.jpg" />
+    <Content Include="HotelItems\Images\hotel-2.jpg" />
+    <Content Include="HotelItems\Images\hotel-3.jpg" />
+    <Content Include="HotelItems\Images\hotel-4.jpg" />
     <Content Include="READ_ME.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -2704,6 +2727,34 @@
     <Compile Include="Migrations\201902240955195_NewChanges17.Designer.cs">
       <DependentUpon>201902240955195_NewChanges17.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902251205077_NewChanges161.cs" />
+    <Compile Include="Migrations\201902251205077_NewChanges161.Designer.cs">
+      <DependentUpon>201902251205077_NewChanges161.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902251235166_NewChanges171.cs" />
+    <Compile Include="Migrations\201902251235166_NewChanges171.Designer.cs">
+      <DependentUpon>201902251235166_NewChanges171.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902251247362_NewChanges172.cs" />
+    <Compile Include="Migrations\201902251247362_NewChanges172.Designer.cs">
+      <DependentUpon>201902251247362_NewChanges172.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902251452317_NewChanges18.cs" />
+    <Compile Include="Migrations\201902251452317_NewChanges18.Designer.cs">
+      <DependentUpon>201902251452317_NewChanges18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902251511499_NewChanges19.cs" />
+    <Compile Include="Migrations\201902251511499_NewChanges19.Designer.cs">
+      <DependentUpon>201902251511499_NewChanges19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902251614018_NewChanges20.cs" />
+    <Compile Include="Migrations\201902251614018_NewChanges20.Designer.cs">
+      <DependentUpon>201902251614018_NewChanges20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902251615564_NewChanges21.cs" />
+    <Compile Include="Migrations\201902251615564_NewChanges21.Designer.cs">
+      <DependentUpon>201902251615564_NewChanges21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
     <Compile Include="Models\AboutViewModel.cs" />
@@ -2725,6 +2776,7 @@
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\HotelPage.cs" />
     <Compile Include="Models\HotelPhoto.cs" />
+    <Compile Include="Models\HotelViewModel.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Location.cs" />
@@ -3050,6 +3102,12 @@
     <Content Include="Areas\Admin\Views\Blogs\CategoryCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Blogs\CategoryEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Blogs\Comment.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\MainEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Location\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Location\AddLocation.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\HotelCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\BlogItemEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\HotelEdit.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3062,7 +3120,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Public\Models\" />
-    <Folder Include="BlogItems\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902151056287_DatabaseV1Added.resx">
@@ -3175,6 +3232,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902240955195_NewChanges17.resx">
       <DependentUpon>201902240955195_NewChanges17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251205077_NewChanges161.resx">
+      <DependentUpon>201902251205077_NewChanges161.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251235166_NewChanges171.resx">
+      <DependentUpon>201902251235166_NewChanges171.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251247362_NewChanges172.resx">
+      <DependentUpon>201902251247362_NewChanges172.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251452317_NewChanges18.resx">
+      <DependentUpon>201902251452317_NewChanges18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251511499_NewChanges19.resx">
+      <DependentUpon>201902251511499_NewChanges19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251614018_NewChanges20.resx">
+      <DependentUpon>201902251614018_NewChanges20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251615564_NewChanges21.resx">
+      <DependentUpon>201902251615564_NewChanges21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
