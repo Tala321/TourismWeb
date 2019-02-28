@@ -1,3 +1,4 @@
-< div class='item'><div class='hotel-img' style='background-image: url(images/hotel-2.jpg);'></div></ div > 
-< div class='item'><div class='hotel-img' style='background-image: url(images/hotel-3.jpg);'></div></ div > 
-< div class='item'><div class='hotel-img' style='background-image: url(images/hotel-4.jpg);'></div></ div > 
+<div class='item'><div class='hotel-img' style='background-image: url(/HotelItems/Images/hotel-2.jpg);'></div></div> 
+<div class='item'><div class='hotel-img' style='background-image: url(/HotelItems/Images/hotel-3.jpg);'></div></div> 
+<div class='item'><div class='hotel-img' style='background-image: url(/HotelItems/Images/hotel-4.jpg);'></div></div> 
+

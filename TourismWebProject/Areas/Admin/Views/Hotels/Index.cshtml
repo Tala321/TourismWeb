@@ -1,6 +1,7 @@
 ﻿@model TourismWebProject.Models.HotelViewModel
 
 @{
+
     ViewBag.Title = "Index";
 }
 
@@ -63,6 +64,7 @@
                                     <th scope="col">Rating </th>
                                     <th scope="col">Country</th>
                                     <th scope="col">City</th>
+                                    <th scope="col">Cover photo</th>
                                     <th scope="col">Description </th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Options:@Html.ActionLink("Add", "HotelCreate", "Hotels", new { @class = "btn btn-primary" })</th>
@@ -79,9 +81,88 @@
                                         <td>@item.RatingId</td>
                                         <td>@item.HotelCountry</td>
                                         <td>@item.HotelCity</td>
-                                        <td>@item.HotelDescription.Split(',')[0]</td>
+                                        <td>@item.HotelCoverPic</td>
+                                        <td>@item.HotelDescription.Split('.')[0]</td>
                                         <td>@item.HotelStatus</td>
                                         <td>@Html.ActionLink("Edit", "HotelEdit", "Hotels", new { id = item.HotelId }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Rooms Part*@
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Rooms part</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Capacity</th>
+                                    <th scope="col">Photo </th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Options:@Html.ActionLink("Add", "RoomCreate", "Hotels", new { @class = "btn btn-primary" })</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.Room)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@item.RoomId</td>
+                                        <td>@item.RoomName</td>
+                                        <td>@item.RoomPrice</td>
+                                        <td>@item.RoomCapacity</td>
+                                        <td>@item.RoomPic</td>
+                                        <td>@item.RoomDescription</td>
+                                        <td>@item.RoomStatus</td>
+                                        <td>@Html.ActionLink("Edit", "RoomEdit", "Hotels", new { id = item.RoomId }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        @* Assigned Rooms Part*@
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong>Assigned Rooms part</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Hotel Name</th>
+                                    <th scope="col">Room Name</th>
+                                    <th scope="col">Options:@Html.ActionLink("Add", "AssignRoom", "Hotels", new { @class = "btn btn-primary" })</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.HotelRoom)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@item.hotel.HotelName</td>
+                                        <td>@item.room.RoomName</td>
+                                        <td>@Html.ActionLink("Delete", "RoomDelete", "Hotels", new {  hotelId=item.HotelId, roomId = item.RoomId }, new { @class = "btn btn-primary" })</td>
                                     </tr>
                                 </tbody>
                             }

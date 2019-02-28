@@ -9,7 +9,8 @@ namespace TourismWebProject.Models
 {
     [Table(name: "Rooms")]
     public class Room
-    {
+    {    
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int   RoomId { get; set; }
@@ -34,9 +35,9 @@ namespace TourismWebProject.Models
 
 
         [Required]
-        public bool   RoomStatus { get; set; }
+        public int   RoomStatus { get; set; }
 
-        public ICollection<Hotel> Hotel { get; set; }
+      public ICollection<HotelRoom> HotelRoom { get; set; }
 
 
     }

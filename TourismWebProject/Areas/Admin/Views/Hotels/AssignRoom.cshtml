@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "AssignRoom";
+}
+
+<div id="wrapper">
+    @Html.Partial("SideBarPartial")
+    <div id="content-wrapper">
+        <table " id="dataTable"></table>
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <strong> Assign a room</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                            @using (Html.BeginForm("AssignRoom", "Hotels", FormMethod.Post))
+                            {
+                                <div class="form-group ">
+                                    <label for="Hotels"> Hotels:</label>
+                                    @Html.DropDownList("HotelId", new SelectList(ViewBag.Hotels, "HotelId", "HotelName"), new { @class = "form-control" })
+                                </div>
+                                <div class="form-group ">
+                                    <label for="Rooms"> Room #1:</label>
+                                    @Html.ListBox("RoomId", new SelectList(ViewBag.Rooms, "RoomId", "RoomName"), new { @class = "form-control" })
+                                </div>
+                              
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

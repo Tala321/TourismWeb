@@ -1667,8 +1667,6 @@
     <Content Include="Areas\Admin\Assets\vendor\jquery\jquery.slim.js" />
     <Content Include="Areas\Admin\Assets\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Areas\Admin\Assets\js\crs.min.js" />
-    <Content Include="Assets\ItemImages\images\image_7.jpg" />
-    <Content Include="Assets\ItemImages\images\image_8.jpg" />
     <Content Include="Assets\css\ajax-loader.gif" />
     <Content Include="Assets\css\animate.css" />
     <Content Include="Assets\css\aos.css" />
@@ -1698,9 +1696,19 @@
     <Content Include="Assets\Images\bg_2.jpg" />
     <Content Include="Assets\Images\bg_4.jpg" />
     <Content Include="Assets\Images\bg_5.jpg" />
+    <Content Include="Assets\BlogImages\images\bg_1.jpg" />
+    <Content Include="Assets\BlogImages\images\destination-5.jpg" />
+    <Content Include="Assets\BlogImages\images\destination-6.jpg" />
+    <Content Include="Assets\BlogImages\images\image_1.jpg" />
+    <Content Include="Assets\BlogImages\images\image_2.jpg" />
+    <Content Include="Assets\BlogImages\images\image_4.jpg" />
+    <Content Include="Assets\BlogImages\images\image_6.jpg" />
+    <Content Include="Assets\BlogImages\images\image_7.jpg" />
+    <Content Include="Assets\BlogImages\images\image_8.jpg" />
     <Content Include="Assets\js\aos.js" />
     <Content Include="Assets\js\bootstrap-datepicker.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
+    <Content Include="Assets\js\crs.min.js" />
     <Content Include="Assets\js\google-map.js" />
     <Content Include="Assets\js\jquery-3.2.1.min.js" />
     <Content Include="Assets\js\jquery-migrate-3.0.1.min.js" />
@@ -2755,6 +2763,70 @@
     <Compile Include="Migrations\201902251615564_NewChanges21.Designer.cs">
       <DependentUpon>201902251615564_NewChanges21.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902261112516_NewChanges22.cs" />
+    <Compile Include="Migrations\201902261112516_NewChanges22.Designer.cs">
+      <DependentUpon>201902261112516_NewChanges22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261117271_NewChanges23.cs" />
+    <Compile Include="Migrations\201902261117271_NewChanges23.Designer.cs">
+      <DependentUpon>201902261117271_NewChanges23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261159169_NewChanges24.cs" />
+    <Compile Include="Migrations\201902261159169_NewChanges24.Designer.cs">
+      <DependentUpon>201902261159169_NewChanges24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261249091_NewChanges25.cs" />
+    <Compile Include="Migrations\201902261249091_NewChanges25.Designer.cs">
+      <DependentUpon>201902261249091_NewChanges25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261249536_NewChanges26.cs" />
+    <Compile Include="Migrations\201902261249536_NewChanges26.Designer.cs">
+      <DependentUpon>201902261249536_NewChanges26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261252032_NewChanges261.cs" />
+    <Compile Include="Migrations\201902261252032_NewChanges261.Designer.cs">
+      <DependentUpon>201902261252032_NewChanges261.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261252594_NewChanges262.cs" />
+    <Compile Include="Migrations\201902261252594_NewChanges262.Designer.cs">
+      <DependentUpon>201902261252594_NewChanges262.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261254223_NewChanges263.cs" />
+    <Compile Include="Migrations\201902261254223_NewChanges263.Designer.cs">
+      <DependentUpon>201902261254223_NewChanges263.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261310025_NewChanges264.cs" />
+    <Compile Include="Migrations\201902261310025_NewChanges264.Designer.cs">
+      <DependentUpon>201902261310025_NewChanges264.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261544537_NewChanges265.cs" />
+    <Compile Include="Migrations\201902261544537_NewChanges265.Designer.cs">
+      <DependentUpon>201902261544537_NewChanges265.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261546236_NewChanges266.cs" />
+    <Compile Include="Migrations\201902261546236_NewChanges266.Designer.cs">
+      <DependentUpon>201902261546236_NewChanges266.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261554302_NewChanges267.cs" />
+    <Compile Include="Migrations\201902261554302_NewChanges267.Designer.cs">
+      <DependentUpon>201902261554302_NewChanges267.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272225326_NewChanges27.cs" />
+    <Compile Include="Migrations\201902272225326_NewChanges27.Designer.cs">
+      <DependentUpon>201902272225326_NewChanges27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272329461_NewChanges28.cs" />
+    <Compile Include="Migrations\201902272329461_NewChanges28.Designer.cs">
+      <DependentUpon>201902272329461_NewChanges28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272330485_NewChanges29.cs" />
+    <Compile Include="Migrations\201902272330485_NewChanges29.Designer.cs">
+      <DependentUpon>201902272330485_NewChanges29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902281240223_NewChanges31.cs" />
+    <Compile Include="Migrations\201902281240223_NewChanges31.Designer.cs">
+      <DependentUpon>201902281240223_NewChanges31.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
     <Compile Include="Models\AboutViewModel.cs" />
@@ -2776,6 +2848,7 @@
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\HotelPage.cs" />
     <Compile Include="Models\HotelPhoto.cs" />
+    <Compile Include="Models\HotelRoom.cs" />
     <Compile Include="Models\HotelViewModel.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Room.cs" />
@@ -3108,6 +3181,9 @@
     <Content Include="Areas\Admin\Views\Hotels\HotelCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Hotels\BlogItemEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Hotels\HotelEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\RoomCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\RoomEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\AssignRoom.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3253,6 +3329,54 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902251615564_NewChanges21.resx">
       <DependentUpon>201902251615564_NewChanges21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261112516_NewChanges22.resx">
+      <DependentUpon>201902261112516_NewChanges22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261117271_NewChanges23.resx">
+      <DependentUpon>201902261117271_NewChanges23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261159169_NewChanges24.resx">
+      <DependentUpon>201902261159169_NewChanges24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261249091_NewChanges25.resx">
+      <DependentUpon>201902261249091_NewChanges25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261249536_NewChanges26.resx">
+      <DependentUpon>201902261249536_NewChanges26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261252032_NewChanges261.resx">
+      <DependentUpon>201902261252032_NewChanges261.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261252594_NewChanges262.resx">
+      <DependentUpon>201902261252594_NewChanges262.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261254223_NewChanges263.resx">
+      <DependentUpon>201902261254223_NewChanges263.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261310025_NewChanges264.resx">
+      <DependentUpon>201902261310025_NewChanges264.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261544537_NewChanges265.resx">
+      <DependentUpon>201902261544537_NewChanges265.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261546236_NewChanges266.resx">
+      <DependentUpon>201902261546236_NewChanges266.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261554302_NewChanges267.resx">
+      <DependentUpon>201902261554302_NewChanges267.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272225326_NewChanges27.resx">
+      <DependentUpon>201902272225326_NewChanges27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272329461_NewChanges28.resx">
+      <DependentUpon>201902272329461_NewChanges28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272330485_NewChanges29.resx">
+      <DependentUpon>201902272330485_NewChanges29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281240223_NewChanges31.resx">
+      <DependentUpon>201902281240223_NewChanges31.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

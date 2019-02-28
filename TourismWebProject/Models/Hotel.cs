@@ -10,6 +10,7 @@ namespace TourismWebProject.Models
     [Table(name: "Hotels")]
     public class Hotel
     {
+       
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -55,7 +56,7 @@ namespace TourismWebProject.Models
         [ForeignKey("ServiceTypeId")]
         public ServiceType ServiceType { get; set; }
 
-        public ICollection<Room> Room { get; set; }
+        public ICollection<HotelRoom> HotelRoom { get; set; }
 
         public ICollection<HotelPhoto> HotelPhoto { get; set; }
     }

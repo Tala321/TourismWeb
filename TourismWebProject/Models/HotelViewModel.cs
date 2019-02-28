@@ -11,7 +11,9 @@ namespace TourismWebProject.Models
 
         public List<HotelPage> HotelPage { get; set; }
 
-       
-        
+        public List<Room> Room { get; set; }
+
+        public List<HotelRoom> HotelRoom { get; set; }
+
     }
 }

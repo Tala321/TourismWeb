@@ -40,6 +40,10 @@
             {
                 blogItems = Model.blogItems.Skip(8 * Convert.ToInt32(ViewData["PageNum"]));
             }
+            @if(ViewData["CategoryId"] !=null)
+            {
+                blogItems = Model.blogItems;
+            }
 
             @foreach (var item in blogItems)
             {

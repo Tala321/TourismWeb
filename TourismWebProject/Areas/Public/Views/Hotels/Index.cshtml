@@ -1,243 +1,184 @@
-﻿
+﻿@model TourismWebProject.Models.HotelViewModel
 @{
+
     ViewBag.Title = "Index";
+
+    double pageCount = Model.Hotel.Count() / 6.0;
+
+    //to store Hotels
+    IEnumerable<TourismWebProject.Models.Hotel> hotels;
+
+    //empty list
+    List<TourismWebProject.Models.Hotel> EmptyList = new List<TourismWebProject.Models.Hotel>();
+    int count=0;
+
+
 }
 
-<div class="hero-wrap js-fullheight" style="background-image: url(/Assets/images/bg_5.jpg);">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
-            <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Hotel</span></p>
-                <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Hotels</h1>
+@foreach (var item in Model.HotelPage)
+{
+
+    <div class="hero-wrap js-fullheight" style="background-image: url(/Assets/images/@item.HotelPageBackPic);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="~/Public/Home/Index">Home</a></span> <span>Hotel</span></p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">@item.HotelPageBackPicText</h1>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+}
 
 <section class="ftco-section ftco-degree-bg">
     <div class="container">
         <div class="row">
-            @Html.Partial("SideSearchPartial")
-            @Html.Partial("SideStarSearchPartial")
+            <div class="col-lg-3 sidebar">
+                <div class="sidebar-wrap bg-light ftco-animate">
+                    <h3 class="heading mb-4">Find Hotel</h3>
+                    @using (Html.BeginForm("Search", "Hotels", FormMethod.Post))
+                    {
+                        <div class="select-wrap one-third">
+                            <div class="form-group">
+                                <label for="HotelCountry">Country:</label><br />
+                                <select class="crs-country form-control" data-region-id="ABC" name="HotelCountry"></select>
+                            </div>
+                            <div class="form-group ">
+                                <label for="HotelCity">City/Region:</label><br />
+                                <select class="crs-country form-control" name="HotelCity" id="ABC"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Dates:</label><br />
+                            <input type="text" id="checkin_date" class="form-control" name="ReservationDateFrom" placeholder="Date from">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="checkin_date" class="form-control" name="ReservationDateTo" placeholder="Date to">
+                        </div>
+                        <div class="form-group ">
+                            <label for="HotelRating"> Star rating:</label>
+                            @Html.DropDownList("RatingId", new SelectList(ViewBag.StarRating, "RatingId", "RatingStar"), new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
+                        </div>
+                    }
+                </div>
+            </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-md-4 ftco-animate">
-                        <div class="destination">
-                            <a href="~/Public/Hotels/Single" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Assets/images/hotel-1.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div class="d-flex">
-                                    <div class="one">
-                                        <h3><a href="~/Public/Hotels/Single">Hotel, Italy</a></h3>
-                                        <p class="rate">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star-o"></i>
-                                            <span>8 Rating</span>
-                                        </p>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price">$40<br><small>/night</small></span>
-                                    </div>
-                                </div>
-                                <p>Far far away, behind the word mountains, far from the countries</p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                    <span class="ml-auto"><a href="#">Book Now</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 ftco-animate">
-                        <div class="destination">
-                            <a href="~/Public/Hotels/Single" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Assets/images/hotel-2.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div class="d-flex">
-                                    <div class="one">
-                                        <h3><a href="~/Public/Hotels/Single">Hotel, Italy</a></h3>
-                                        <p class="rate">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star-o"></i>
-                                            <span>8 Rating</span>
-                                        </p>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price">$40<br><small>/night</small></span>
-                                    </div>
-                                </div>
-                                <p>Far far away, behind the word mountains, far from the countries</p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                    <span class="ml-auto"><a href="#">Book Now</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 ftco-animate">
-                        <div class="destination">
-                            <a href="~/Public/Hotels/Single" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Assets/images/hotel-3.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div class="d-flex">
-                                    <div class="one">
-                                        <h3><a href="~/Public/Hotels/Single">Hotel, Italy</a></h3>
-                                        <p class="rate">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star-o"></i>
-                                            <span>8 Rating</span>
-                                        </p>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price">$40<br><small>/night</small></span>
+
+                    @if (Convert.ToInt32(ViewData["PageNum"]) == 0 || ViewData["PageNum"] == null && ViewData["Country"] == null)
+                    {
+                        hotels = Model.Hotel.Take(6);
+                    }
+                    else
+                    {
+                        hotels = Model.Hotel.Skip(6 * Convert.ToInt32(ViewData["PageNum"]));
+                    }
+                    @if (ViewData["Country"] != null && ViewData["City"] != null || ViewData["Country"] != null && ViewData["City"] == null)
+                    {
+                        hotels = Model.Hotel;
+                    }
+
+                    @if (ViewData["Country"] != null && ViewData["City"] != null && ViewData["Rating"] != null)
+                    {
+                        hotels = Model.Hotel.FindAll(x => x.RatingId == Convert.ToInt32(ViewData["Rating"]));
+                    }
+                    @if (ViewData["Country"] != null && ViewData["City"] == null && ViewData["Rating"] != null)
+                    {
+                        hotels = Model.Hotel.FindAll(x => x.RatingId == Convert.ToInt32(ViewData["Rating"]));
+                    }
+                    @if (ViewData["Country"] == null && ViewData["City"] == null && ViewData["Rating"] != null)
+                    {
+                        hotels = Model.Hotel.FindAll(x => x.RatingId == Convert.ToInt32(ViewData["Rating"]));
+                    }
+
+                    @if (ViewData["Country"] != null && ViewData["City"] != null && ViewData["AvailableHotels"] != null)
+                    {
+                        count = 1;
+                        foreach (var item in ViewData["AvailableHotels"] as List<TourismWebProject.Models.Hotel>)
+                        {
+                            count++;
+                            hotels = ViewData["AvailableHotels"] as List<TourismWebProject.Models.Hotel>;
+                        }
+
+                        if (count == 1)
+                        {
+                            hotels = EmptyList;
+                        }
+                    }
+                  
+
+
+                    @foreach (var item in hotels)
+                    {
+                        if (item.HotelStatus == 1)
+                        {
+                            if (ViewData["Country"]==null || item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.HotelCity == Convert.ToString(ViewData["City"]) || item.HotelCountry == Convert.ToString(ViewData["Country"]) && ViewData["City"] == null || item.RatingId == Convert.ToInt32(ViewData["Rating"]) && item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.HotelCity == Convert.ToString(ViewData["City"]) || item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.RatingId == Convert.ToInt32(ViewData["Rating"]) || item.RatingId == Convert.ToInt32(ViewData["Rating"]) && ViewData["Country"] == null)
+                            {
+                                <div class="col-md-4 ftco-animate">
+                                    <div class="destination">
+                                        <a href="~/Public/Hotels/Single/@item.HotelId" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/HotelItems/images/@item.HotelCoverPic);">
+                                        </a>
+                                        <div class="text p-3">
+                                            <div class="d-flex">
+                                                <div class="one">
+                                                    <h3><a href="~/Public/Hotels/Single/@item.HotelId">@item.HotelName</a></h3>
+                                                    <p class="rate">
+                                                        @for (var i = 0; i < Convert.ToInt32(item.RatingId); i++)
+                                                        {
+                                                            <i class="icon-star"></i>
+                                                        }
+                                                        <span>Rating</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p>@item.HotelDescription.Split('.')[0]...</p>
+                                            <hr>
+                                            <p class="bottom-area d-flex">
+                                                <span><i class="icon-map-o"></i> @item.HotelCountry, @item.HotelCity</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p>Far far away, behind the word mountains, far from the countries</p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                    <span class="ml-auto"><a href="#">Book Now</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 ftco-animate">
-                        <div class="destination">
-                            <a href="~/Public/Hotels/Single" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Assets/images/hotel-4.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div class="d-flex">
-                                    <div class="one">
-                                        <h3><a href="~/Public/Hotels/Single">Hotel, Italy</a></h3>
-                                        <p class="rate">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star-o"></i>
-                                            <span>8 Rating</span>
-                                        </p>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price">$40<br><small>/night</small></span>
-                                    </div>
-                                </div>
-                                <p>Far far away, behind the word mountains, far from the countries</p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                    <span class="ml-auto"><a href="#">Book Now</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 ftco-animate">
-                        <div class="destination">
-                            <a href="~/Public/Hotels/Single" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Assets/images/hotel-5.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div class="d-flex">
-                                    <div class="one">
-                                        <h3><a href="~/Public/Hotels/Single">Hotel, Italy</a></h3>
-                                        <p class="rate">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star-o"></i>
-                                            <span>8 Rating</span>
-                                        </p>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price">$40<br><small>/night</small></span>
-                                    </div>
-                                </div>
-                                <p>Far far away, behind the word mountains, far from the countries</p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                    <span class="ml-auto"><a href="#">Book Now</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 ftco-animate">
-                        <div class="destination">
-                            <a href="~/Public/Hotels/Single" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Assets/images/hotel-6.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div class="d-flex">
-                                    <div class="one">
-                                        <h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-                                        <p class="rate">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star-o"></i>
-                                            <span>8 Rating</span>
-                                        </p>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price">$40<br><small>/night</small></span>
-                                    </div>
-                                </div>
-                                <p>Far far away, behind the word mountains, far from the countries</p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                    <span class="ml-auto"><a href="#">Book Now</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
+
                 </div>
+
                 <div class="row mt-5">
                     <div class="col text-center">
                         <div class="block-27">
                             <ul>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&gt;</a></li>
+                                @if (ViewData["Country"] ==null)
+                                {
+                                    if ((pageCount % 1) == 0)
+                                    {
+                                        for (var i = 1; pageCount >= i; i++)
+                                        {
+                                        <li><a href="~/Public/Hotels/Page/@i">@i</a></li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        for (var i = 1; Math.Truncate(pageCount) + 1 >= i; i++)
+                                        {
+                                        <li><a href="~/Public/Hotels/Page/@i">@i</a></li>
+                                        }
+                                    }
+                                }
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div> <!-- .col-md-8 -->
+            </div>
         </div>
     </div>
 </section> <!-- .section -->

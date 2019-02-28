@@ -13,10 +13,14 @@ namespace TourismWebProject.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ReservationServiceId { get; set; }
+        public int ReservationId { get; set; }
 
         [Required]
         public int ReservationServiceTypeId { get; set; }
+
+        [Required]
+        public int ReservationServiceId { get; set; }
+
 
         [Required]
         public DateTime ReservationDateFrom { get; set; }
