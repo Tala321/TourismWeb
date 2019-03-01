@@ -102,8 +102,7 @@
                                                 <p>@item.room.RoomDescription</p>
                                                 <hr>
                                                 <p class="bottom-area d-flex">
-                                                    <span>Our Best Room</span>
-                                                    <span class="ml-auto"><a href="#">Book Now</a></span>
+                                                    <span>@item.room.RoomName</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -112,55 +111,36 @@
                             }
                             <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                 <h4 class="mb-5">Check Availability &amp; Booking</h4>
-                                <div class="fields">
+                                @if (Convert.ToInt32(ViewData["BookeStatus"])==1)
+                                {
+                                <h4>Successfully booked</h4> ;
+                                }
+                                else if (Convert.ToInt32(ViewData["BookeStatus"])==2)
+                                {
+                                <h4>Please try again,and check entered data</h4>;
+                                }
+
+                                @using (Html.BeginForm("Booking", "Hotels", FormMethod.Post))
+                                {<div class="fields">
                                     <div class="row">
+                                        <input type="hidden" name="HotelId" class="form-control" value="@ViewData["HotelId"]">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Name">
+                                                <input type="text" id="checkin_date" name="ReservationDateFrom" class="form-control" placeholder="Date from">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Email">
+                                                <input type="text" id="checkin_date" name="ReservationDateTo" class="form-control" placeholder="Date to">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
+                                                @Html.DropDownList("RoomId", new SelectList(ViewBag.Rooms, "RoomId", "RoomName"), new { @class = "form-control" })
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="select-wrap one-third">
-                                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                    <select name="" id="" class="form-control" placeholder="Guest">
-                                                        <option value="0">Guest</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="select-wrap one-third">
-                                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                    <select name="" id="" class="form-control" placeholder="Children">
-                                                        <option value="0">Children</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        <div class="col-md-12">
+                                            <h4>Please contact us if you have some requests</h4>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -169,50 +149,51 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                }
 
-                            <div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
-                                <h4 class="mb-4">Related Hotels</h4>
-                                <div class="row">
-                                    @foreach (var item in Model.Hotel)
-                                    {
-                                        if (item.HotelCountry == Convert.ToString(ViewData["HotelCountry"]) && item.HotelCity == Convert.ToString(ViewData["HotelCity"]))
+
+                                <div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
+                                    <h4 class="mb-4">Related Hotels</h4>
+                                    <div class="row">
+                                        @foreach (var item in Model.Hotel)
                                         {
-                                            <div class="col-md-4">
-                                                <div class="destination">
-                                                    <a href="~/Public/Hotels/Single/@item.HotelId" class="img img-2" style="background-image: url(/HotelItems/Images/@item.HotelCoverPic);"></a>
-                                                    <div class="text p-3">
-                                                        <div class="d-flex">
-                                                            <div class="one">
-                                                                <h3>@item.HotelName</h3>
-                                                                <p class="rate">
-                                                                    @for (var i = 0; i < Convert.ToInt32(item.Rating.RatingStar); i++)
-                                                                    {
-                                                                        <i class="icon-star"></i>
-                                                                    }
-                                                                    <span>Rating</span>
-                                                                </p>
+                                            if (item.HotelCountry == Convert.ToString(ViewData["HotelCountry"]) && item.HotelCity == Convert.ToString(ViewData["HotelCity"]))
+                                            {
+                                                <div class="col-md-4">
+                                                    <div class="destination">
+                                                        <a href="~/Public/Hotels/Single/@item.HotelId" class="img img-2" style="background-image: url(/HotelItems/Images/@item.HotelCoverPic);"></a>
+                                                        <div class="text p-3">
+                                                            <div class="d-flex">
+                                                                <div class="one">
+                                                                    <h3>@item.HotelName</h3>
+                                                                    <p class="rate">
+                                                                        @for (var i = 0; i < Convert.ToInt32(item.Rating.RatingStar); i++)
+                                                                        {
+                                                                            <i class="icon-star"></i>
+                                                                        }
+                                                                        <span>Rating</span>
+                                                                    </p>
+                                                                </div>
                                                             </div>
+                                                            <p>@item.HotelDescription.Split('.')[0]</p>
+                                                            <hr>
+                                                            <p class="bottom-area d-flex">
+                                                                <span><i class="icon-map-o"></i> @item.HotelCountry, @item.HotelCity</span>
+                                                            </p>
                                                         </div>
-                                                        <p>@item.HotelDescription.Split('.')[0]</p>
-                                                        <hr>
-                                                        <p class="bottom-area d-flex">
-                                                            <span><i class="icon-map-o"></i> @item.HotelCountry, @item.HotelCity</span>
-                                                        </p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            }
                                         }
-                                    }
 
-                                </div>
-                                @if (!Model.Hotel.Exists(f => f.HotelCity == Convert.ToString(ViewData["HotelCity"])))
-                                {
-                                    <h5 class="mb-4">No related hotels in this area</h5>
-                                }
-                            </div> <!-- .col-md-8 -->
+                                    </div>
+                                    @if (!Model.Hotel.Exists(f => f.HotelCity == Convert.ToString(ViewData["HotelCity"])))
+                                    {
+                                        <h5 class="mb-4">No related hotels in this area</h5>
+                                    }
+                                </div> <!-- .col-md-8 -->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 </section> <!-- .section -->

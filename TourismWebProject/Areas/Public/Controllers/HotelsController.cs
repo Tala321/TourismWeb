@@ -36,6 +36,7 @@ namespace TourismWebProject.Areas.Public.Controllers
         //Single Hotel
         public ActionResult Single(int? id)
         {
+
             var dir = Server.MapPath("~\\HotelItems");
 
             foreach (var item in db.Hotel.ToList())
@@ -67,6 +68,8 @@ namespace TourismWebProject.Areas.Public.Controllers
                 HotelPage = db.HotelPage.ToList()
             };
 
+            ViewData["BookeStatus"] = TempData["BookeStatus"];
+            ViewBag.Rooms = db.Room.ToList();
             ViewBag.StarRating = db.Rating.ToList();
 
             return View(blogViewModel);
@@ -77,6 +80,108 @@ namespace TourismWebProject.Areas.Public.Controllers
         {
             TempData["PageNum"] = id - 1;
             return RedirectToAction("Index");
+        }
+
+        //Booking proccess
+        public ActionResult Booking(Reservation reservation, Room room, Hotel hotel)
+        {
+
+            TempData["BookeStatus"] = 2;
+
+            //possibility to book only during the year// refresh page if the below statement is false
+            if (reservation.ReservationDateFrom.Year == DateTime.Today.Year && reservation.ReservationDateTo.Year == DateTime.Today.Year && reservation.ReservationDateFrom.Month >= DateTime.Today.Month && reservation.ReservationDateTo.Month >= DateTime.Today.Month)
+            {
+                if (reservation.ReservationDateFrom < reservation.ReservationDateTo)
+                {
+
+                    //get the number of booked hotel  in the reservation list
+                    var countofReservation = db.Reservation.Where(i => (i.ReservationServiceTypeId == hotel.HotelId) && (i.ReservationServiceId == room.RoomId) && (i.ReservationDateFrom.Month == reservation.ReservationDateFrom.Month) && (i.ReservationDateTo.Month == reservation.ReservationDateTo.Month)).Count();
+
+                    //uses to check avilability of dates (counts rooms)
+                    var CheckCount = 0;
+
+                    var dateFrom = reservation.ReservationDateFrom;
+                    var dateTo = reservation.ReservationDateTo;
+
+                    //calculate max reservation period (max 30 days)
+                    int Month = dateTo.Month - dateFrom.Month;
+
+                    int Days = dateTo.Day - dateFrom.Day;
+
+                    int Reservationlimit = 0;
+
+                    var count = 0;
+
+                    if (Month == 1)
+                    {
+                        Reservationlimit = 31 - dateFrom.Day + dateTo.Day;
+                    }
+                    //-----
+
+                    if (reservation.ReservationDateFrom != null && reservation.ReservationDateTo != null)
+                    {
+                        //check max stay period (30 days)
+                        if (Month == 0 || Reservationlimit < 30)
+                        {
+                            foreach (var item in db.Reservation.Where(i => (i.ReservationServiceTypeId == hotel.HotelId) && (i.ReservationServiceId == room.RoomId) && (i.ReservationDateFrom.Month == reservation.ReservationDateFrom.Month) && (i.ReservationDateTo.Month == reservation.ReservationDateTo.Month)).ToList())
+                            {
+                                count++;
+                                //--
+                                if (dateFrom.Day < item.ReservationDateFrom.Day && item.ReservationDateFrom.Day > dateTo.Day || dateFrom.Day > item.ReservationDateTo.Day && item.ReservationDateTo.Day < dateTo.Day)
+                                {
+                                    CheckCount++;
+
+                                    if (countofReservation == CheckCount)
+                                    {
+                                        TempData["HotelId"] = hotel.HotelId;
+                                        TempData["RoomId"] = room.RoomId;
+                                        TempData["DataFrom"] = reservation.ReservationDateFrom;
+                                        TempData["DataTo"] = reservation.ReservationDateTo;
+                                        TempData["BookeStatus"] = 1;
+                                        return RedirectToAction("ConfirmBooking");
+                                    }
+                                }
+                            }
+
+                            //if there is no such hotel in the reservation list
+                            if (count == 0)
+                            {
+                                //Reservation(reservation, hotel, room);
+                                TempData["HotelId"] = hotel.HotelId;
+                                TempData["RoomId"] = room.RoomId;
+                                TempData["DataFrom"] = reservation.ReservationDateFrom;
+                                TempData["DataTo"] = reservation.ReservationDateTo;
+                                TempData["BookeStatus"] = 1;
+
+                                return RedirectToAction("ConfirmBooking");
+                            }
+                        }
+                    }
+                }
+            }
+            return RedirectToAction("Single/" + hotel.HotelId.ToString());
+        }
+
+        //Confirm payment
+        public ActionResult ConfirmBooking()
+        {
+
+            return View();
+        }
+
+        //after successful payment
+        public ActionResult Successful()
+        {
+            Room room = new Room();
+            Reservation reservation = new Reservation();
+
+            reservation.ReservationServiceTypeId = Convert.ToInt32( TempData["HotelId"]) ;
+            reservation.ReservationServiceId = Convert.ToInt32(TempData["RoomId"]);
+            reservation.ReservationDateFrom = Convert.ToDateTime( TempData["DataFrom"]);
+            reservation.ReservationDateTo = Convert.ToDateTime(TempData["DataTo"]);
+            Reservation(reservation);
+
+            return RedirectToAction("Single/" + TempData["HotelId"].ToString());
         }
 
         //filter for searching hotels-------------------------------------------------
@@ -98,14 +203,21 @@ namespace TourismWebProject.Areas.Public.Controllers
             //Country ,city
             if (hotel.HotelCity != null && hotel.HotelCountry != null && Convert.ToInt32(hotel.RatingId) == 1)
             {
+                var count = 0;
                 foreach (var item in db.Hotel.ToList())
                 {
                     if (item.HotelCountry == hotel.HotelCountry && item.HotelCity == hotel.HotelCity)
                     {
+                        count++;
                         TempData["CountryName"] = item.HotelCountry;
                         TempData["CityName"] = item.HotelCity;
                         break;
                     }
+                }
+                if (count == 0)
+                {
+                    TempData["CountryName"] = "No such country";
+                    TempData["CityName"] = "No such city";
                 }
             }
             else
@@ -113,28 +225,43 @@ namespace TourismWebProject.Areas.Public.Controllers
                 //if only country selected
                 if (hotel.HotelCity == null && Convert.ToInt32(hotel.RatingId) == 1)
                 {
+                    var count = 0;
                     foreach (var item in db.Hotel.ToList())
                     {
                         if (hotel.HotelCountry == item.HotelCountry)
                         {
+                            count++;
                             TempData["CountryName"] = item.HotelCountry;
                             break;
                         }
                     }
+
+                    if (count == 0)
+                    {
+                        TempData["CountryName"] = "No such country";
+                    }
                 }
             }
+
+
             //if selected:Country,City,Rating
             if (hotel.HotelCity != null && hotel.HotelCountry != null && Convert.ToInt32(hotel.RatingId) != 1)
             {
+                var count = 0;
                 foreach (var item in db.Hotel.ToList())
                 {
                     if (item.HotelCountry == hotel.HotelCountry && item.HotelCity == hotel.HotelCity && item.RatingId == hotel.RatingId)
                     {
+                        count++;
                         TempData["CountryName"] = item.HotelCountry;
                         TempData["CityName"] = item.HotelCity;
                         TempData["Rating"] = item.RatingId;
                         break;
                     }
+                }
+                if (count == 0)
+                {
+                    TempData["CountryName"] = "No such country";
                 }
             }
             //if selected:Country,Rating
@@ -151,7 +278,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                 }
             }
             //if selected:Rating
-            if (hotel.HotelCity == null && hotel.HotelCountry == null && Convert.ToInt32(hotel.RatingId) != 1|| hotel.HotelCity == null && hotel.HotelCountry == null && Convert.ToInt32(hotel.RatingId) != 2)
+            if (hotel.HotelCity == null && hotel.HotelCountry == null && Convert.ToInt32(hotel.RatingId) != 1 || hotel.HotelCity == null && hotel.HotelCountry == null && Convert.ToInt32(hotel.RatingId) != 2)
             {
                 foreach (var item in db.Hotel.ToList())
                 {
@@ -167,8 +294,8 @@ namespace TourismWebProject.Areas.Public.Controllers
             var dateTo = reservation.ReservationDateTo;
 
             //if selected:Country ,city ,dates
-            if (hotel.HotelCity != null && hotel.HotelCountry != null && Convert.ToInt32(hotel.RatingId) == 1 &&  dateFrom.Year !=0001 && dateTo.Year != 0001)
-            {      
+            if (hotel.HotelCity != null && hotel.HotelCountry != null && Convert.ToInt32(hotel.RatingId) == 1 && dateFrom.Year != 0001 && dateTo.Year != 0001)
+            {
                 List<Hotel> AvailableHotels = new List<Hotel>();
 
                 foreach (var item in db.Hotel.ToList())
@@ -219,17 +346,31 @@ namespace TourismWebProject.Areas.Public.Controllers
         //check availability of rooms of a hotel
         public void CheckHotelAvailability(Hotel hotel)
         {
+            int RoomsCount = HotelRooms(hotel);
+
             int count = 0;
             foreach (var item in db.HotelRoom.Where(i => (i.HotelId == hotel.HotelId) && (i.Status == 2)))
             {
                 count++;
             }
 
-            if (count == 3)
+            if (count == RoomsCount)
             {
                 hotel.HotelStatus = 2;
                 db.SaveChanges();
             }
+        }
+
+        //Check Amount of a hotel's rooms
+        public int HotelRooms(Hotel hotel)
+        {
+            int count = 0;
+            foreach (var item in db.HotelRoom.Where(i => i.HotelId == hotel.HotelId))
+            {
+                count++;
+            }
+
+            return count;
         }
 
         //set all hotels status 1(visible)
@@ -253,5 +394,19 @@ namespace TourismWebProject.Areas.Public.Controllers
             }
         }
         //---------------------------------------------------------------------
+
+        //make reservation
+        public void Reservation(Reservation reservation)
+        {
+            reservation.UserId = 1;//========================================change it!===========================
+            reservation.ReservationStatus = true;
+            reservation.ServiceTypeId = 1;
+            foreach (var item1 in db.Room.Where(i => i.RoomId == reservation.ReservationServiceId))
+            {
+                reservation.ReservationTotal = item1.RoomPrice;
+            }
+            db.Reservation.Add(reservation);
+            db.SaveChanges();
+        }
     }
 }

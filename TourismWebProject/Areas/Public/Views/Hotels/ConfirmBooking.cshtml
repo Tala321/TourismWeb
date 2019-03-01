@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Style -->
+    <link rel="stylesheet" href="~/Assets/Payment/css/style.css" type="text/css" media="all" />
+
+</head>
+<body>
+
+
+    <div class="container">
+        @using (Html.BeginForm("Successful", "Hotels", FormMethod.Post))
+        {
+            <div class="paymentbox">
+                <p>NAME ON CARD</p>
+                <input type="text" class="name" placeholder="E.g. Johann Schmidt" required="">
+                <p>ACCOUNT NUMBER</p>
+                <input type="text" class="ac" placeholder="XXXX - XXXX - XXXX - XXXX" required="">
+                <div class="exp">
+                    <p>EXPIRATION</p>
+                    <input type="text" class="expire" placeholder="MM/YY" required="">
+                </div>
+                <div class="cvv">
+                    <p>CVV</p>
+                    <input type="text" class="cvvv" placeholder="XXXX" required="">
+                </div>
+                <input type="submit" class="pay btn-dark" value="Proceed To Pay →">
+                <div class="clear"></div>
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1723,6 +1723,13 @@
     <Content Include="Assets\js\popper.min.js" />
     <Content Include="Assets\js\range.js" />
     <Content Include="Assets\js\scrollax.min.js" />
+    <Content Include="Assets\Payment\css\style.css" />
+    <Content Include="Assets\Payment\images\bg.jpg" />
+    <Content Include="Assets\Payment\images\bg.png" />
+    <Content Include="Assets\Payment\images\card.png" />
+    <Content Include="Assets\Payment\images\visa.png" />
+    <Content Include="Assets\Payment\images\visa1.png" />
+    <Content Include="Assets\Payment\images\visa2.png" />
     <Content Include="BlogItems\blogItem1.txt" />
     <Content Include="BlogItems\blogItem2.txt" />
     <Content Include="BlogItems\blogItem3.txt" />
@@ -3184,6 +3191,9 @@
     <Content Include="Areas\Admin\Views\Hotels\RoomCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Hotels\RoomEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Hotels\AssignRoom.cshtml" />
+    <Content Include="Assets\Payment\fonts\FrancoisOne.ttf" />
+    <Content Include="Assets\Payment\fonts\Oxygen-Regular.ttf" />
+    <Content Include="Areas\Public\Views\Hotels\ConfirmBooking.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

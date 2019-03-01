@@ -10,9 +10,12 @@
 
     //empty list
     List<TourismWebProject.Models.Hotel> EmptyList = new List<TourismWebProject.Models.Hotel>();
-    int count=0;
+
+    int count = 0;
 
 
+    //No results message count
+    int NoResultCount = 0;
 }
 
 @foreach (var item in Model.HotelPage)
@@ -94,7 +97,10 @@
                     {
                         hotels = Model.Hotel.FindAll(x => x.RatingId == Convert.ToInt32(ViewData["Rating"]));
                     }
-
+                    @if (Convert.ToString(ViewData["Country"]) == "No such country" || Convert.ToString(ViewData["City"]) == "No such city")
+                    {
+                        hotels = EmptyList;
+                    }
                     @if (ViewData["Country"] != null && ViewData["City"] != null && ViewData["AvailableHotels"] != null)
                     {
                         count = 1;
@@ -109,15 +115,16 @@
                             hotels = EmptyList;
                         }
                     }
-                  
+
 
 
                     @foreach (var item in hotels)
                     {
                         if (item.HotelStatus == 1)
                         {
-                            if (ViewData["Country"]==null || item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.HotelCity == Convert.ToString(ViewData["City"]) || item.HotelCountry == Convert.ToString(ViewData["Country"]) && ViewData["City"] == null || item.RatingId == Convert.ToInt32(ViewData["Rating"]) && item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.HotelCity == Convert.ToString(ViewData["City"]) || item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.RatingId == Convert.ToInt32(ViewData["Rating"]) || item.RatingId == Convert.ToInt32(ViewData["Rating"]) && ViewData["Country"] == null)
+                            if (ViewData["Country"] == null || item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.HotelCity == Convert.ToString(ViewData["City"]) || item.HotelCountry == Convert.ToString(ViewData["Country"]) && ViewData["City"] == null || item.RatingId == Convert.ToInt32(ViewData["Rating"]) && item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.HotelCity == Convert.ToString(ViewData["City"]) || item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.RatingId == Convert.ToInt32(ViewData["Rating"]) || item.RatingId == Convert.ToInt32(ViewData["Rating"]) && ViewData["Country"] == null)
                             {
+                                NoResultCount++;
                                 <div class="col-md-4 ftco-animate">
                                     <div class="destination">
                                         <a href="~/Public/Hotels/Single/@item.HotelId" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/HotelItems/images/@item.HotelCoverPic);">
@@ -144,11 +151,14 @@
                                     </div>
                                 </div>
                             }
-                            else
-                            {
-
-                            }
                         }
+                    }
+
+                    @if (NoResultCount == 0)
+                    {
+                        <div class="col-md-4 ftco-animate">
+                            <h3>No Result Found</h3>
+                        </div>
                     }
 
                 </div>
@@ -157,20 +167,20 @@
                     <div class="col text-center">
                         <div class="block-27">
                             <ul>
-                                @if (ViewData["Country"] ==null)
+                                @if (ViewData["Country"] == null && ViewData["City"] == null)
                                 {
                                     if ((pageCount % 1) == 0)
                                     {
                                         for (var i = 1; pageCount >= i; i++)
                                         {
-                                        <li><a href="~/Public/Hotels/Page/@i">@i</a></li>
+                                            <li><a href="~/Public/Hotels/Page/@i">@i</a></li>
                                         }
                                     }
                                     else
                                     {
                                         for (var i = 1; Math.Truncate(pageCount) + 1 >= i; i++)
                                         {
-                                        <li><a href="~/Public/Hotels/Page/@i">@i</a></li>
+                                            <li><a href="~/Public/Hotels/Page/@i">@i</a></li>
                                         }
                                     }
                                 }
