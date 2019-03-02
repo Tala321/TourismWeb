@@ -11,20 +11,20 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    <strong> Hotel page main part</strong>
+                    <strong> Tour page main part</strong>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive ">
                         <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
-                            @using (Html.BeginForm("MainEdit", "Hotels", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            @using (Html.BeginForm("MainEdit", "Tours", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 <div class="form-group ">
-                                    <label for="HotelPageBackPic">Main Photo of the background</label>
-                                    <input type="file" class="form-control" name="HotelPageBackPic">
+                                    <label for="ToursPageBackPic">Main Photo of the background</label>
+                                    <input type="file" class="form-control" name="ToursPageBackPic">
                                 </div>
                                 <div class="form-group">
-                                    <label for="HotelPageBackPicText">Text for the background photo</label>
-                                    <textarea type="textarea" class="form-control" name="HotelPageBackPicText">@ViewData["HotelPageBackPicText"]</textarea>
+                                    <label for="ToursPageBackPicText">Text for the background photo</label>
+                                    <textarea type="textarea" class="form-control" name="ToursPageBackPicText">@ViewData["TourPageBackPicText"] </textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             }
@@ -35,6 +35,7 @@
         </div>
     </div>
 </div>
+
 
 
 

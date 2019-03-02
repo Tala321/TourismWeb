@@ -31,16 +31,10 @@ namespace TourismWebProject.Models
         public string TourDescription { get; set; }
 
         [Required]
-        public int TourCapacity { get; set; }
+        public string TourPic { get; set; }
 
         [Required]
-        public bool TourStatus { get; set; }
-
-
-        public int RatingId { get; set; }
-
-        [ForeignKey("RatingId")]
-        public Rating Rating { get; set; }
+        public int TourStatus { get; set; }
 
         public int ServiceTypeId { get; set; }
 

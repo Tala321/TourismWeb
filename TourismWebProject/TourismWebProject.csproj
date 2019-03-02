@@ -1694,6 +1694,7 @@
     <Content Include="Assets\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="Assets\fonts\open-iconic\open-iconic.svg" />
     <Content Include="Assets\Images\bg_2.jpg" />
+    <Content Include="Assets\Images\bg_3.jpg" />
     <Content Include="Assets\Images\bg_4.jpg" />
     <Content Include="Assets\Images\bg_5.jpg" />
     <Content Include="Assets\BlogImages\images\bg_1.jpg" />
@@ -2834,6 +2835,26 @@
     <Compile Include="Migrations\201902281240223_NewChanges31.Designer.cs">
       <DependentUpon>201902281240223_NewChanges31.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903021050072_Tours.cs" />
+    <Compile Include="Migrations\201903021050072_Tours.Designer.cs">
+      <DependentUpon>201903021050072_Tours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903021054107_Tours1.cs" />
+    <Compile Include="Migrations\201903021054107_Tours1.Designer.cs">
+      <DependentUpon>201903021054107_Tours1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903021118004_Tours2.cs" />
+    <Compile Include="Migrations\201903021118004_Tours2.Designer.cs">
+      <DependentUpon>201903021118004_Tours2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903021449492_Tours3.cs" />
+    <Compile Include="Migrations\201903021449492_Tours3.Designer.cs">
+      <DependentUpon>201903021449492_Tours3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903021500145_Tours4.cs" />
+    <Compile Include="Migrations\201903021500145_Tours4.Designer.cs">
+      <DependentUpon>201903021500145_Tours4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
     <Compile Include="Models\AboutViewModel.cs" />
@@ -2869,6 +2890,7 @@
     <Compile Include="Models\TourismDbContext.cs" />
     <Compile Include="Models\TourPage.cs" />
     <Compile Include="Models\TourPhoto.cs" />
+    <Compile Include="Models\TourViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3159,7 +3181,6 @@
     <Content Include="Areas\Admin\Views\Blogs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Hotels\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Tours\Index.cshtml" />
     <Content Include="Areas\Admin\Views\About\MainEdit.cshtml" />
     <Content Include="Areas\Admin\Views\About\ItemEdit.cshtml" />
     <Content Include="Areas\Admin\Views\About\FaqEdit.cshtml" />
@@ -3194,6 +3215,10 @@
     <Content Include="Assets\Payment\fonts\FrancoisOne.ttf" />
     <Content Include="Assets\Payment\fonts\Oxygen-Regular.ttf" />
     <Content Include="Areas\Public\Views\Hotels\ConfirmBooking.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\MainEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\TourCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\TourEdit.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3387,6 +3412,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902281240223_NewChanges31.resx">
       <DependentUpon>201902281240223_NewChanges31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903021050072_Tours.resx">
+      <DependentUpon>201903021050072_Tours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903021054107_Tours1.resx">
+      <DependentUpon>201903021054107_Tours1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903021118004_Tours2.resx">
+      <DependentUpon>201903021118004_Tours2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903021449492_Tours3.resx">
+      <DependentUpon>201903021449492_Tours3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903021500145_Tours4.resx">
+      <DependentUpon>201903021500145_Tours4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

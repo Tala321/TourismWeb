@@ -15,7 +15,6 @@ namespace TourismWebProject.Models
 
             Hotel = new HashSet<Hotel>();
 
-            Tour = new HashSet<Tour>();
         }
 
         [Key]
@@ -28,6 +27,5 @@ namespace TourismWebProject.Models
 
         public ICollection<Hotel> Hotel { get; set; }
 
-        public ICollection<Tour> Tour { get; set; }
     }
 }

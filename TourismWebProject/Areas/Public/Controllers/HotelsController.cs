@@ -121,7 +121,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                     if (reservation.ReservationDateFrom != null && reservation.ReservationDateTo != null)
                     {
                         //check max stay period (30 days)
-                        if (Month == 0 || Reservationlimit < 30)
+                        if (Month == 0 || Month == 1 && Reservationlimit < 32)
                         {
                             foreach (var item in db.Reservation.Where(i => (i.ReservationServiceTypeId == hotel.HotelId) && (i.ReservationServiceId == room.RoomId) && (i.ReservationDateFrom.Month == reservation.ReservationDateFrom.Month) && (i.ReservationDateTo.Month == reservation.ReservationDateTo.Month)).ToList())
                             {
