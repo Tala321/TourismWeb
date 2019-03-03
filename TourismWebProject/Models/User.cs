@@ -17,6 +17,8 @@ namespace TourismWebProject.Models
             Comment = new HashSet<Comment>();
 
             ContactForm = new HashSet<ContactForm>();
+
+            TourList = new HashSet<TourList>();
         }
 
         [Key]
@@ -59,6 +61,8 @@ namespace TourismWebProject.Models
         public ICollection<Comment> Comment { get; set; }
 
         public ICollection<ContactForm> ContactForm { get; set; }
+
+        public ICollection<TourList> TourList { get; set; }
 
     }
 }

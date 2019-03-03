@@ -10,6 +10,11 @@ namespace TourismWebProject.Models
        [Table(name: "Tour")]
     public class Tour
     {
+        public Tour()
+        {
+            TourList = new HashSet<TourList>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TourId { get; set; }
@@ -47,5 +52,7 @@ namespace TourismWebProject.Models
         public Hotel Hotel { get; set; }
 
         public ICollection<TourPhoto> TourPhoto { get; set; }
+
+        public ICollection<TourList> TourList { get; set; }
     }
 }

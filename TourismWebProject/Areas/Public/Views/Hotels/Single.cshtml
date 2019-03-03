@@ -111,11 +111,11 @@
                             }
                             <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                 <h4 class="mb-5">Check Availability &amp; Booking</h4>
-                                @if (Convert.ToInt32(ViewData["BookeStatus"])==1)
+                                @if (Convert.ToInt32(ViewData["BookStatus"])==1)
                                 {
                                 <h4>Successfully booked</h4> ;
                                 }
-                                else if (Convert.ToInt32(ViewData["BookeStatus"])==2)
+                                else if (Convert.ToInt32(ViewData["BookStatus"])==2)
                                 {
                                 <h4>Please try again,and check entered data/The room isn't available on the dates</h4>;
                                 }

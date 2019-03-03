@@ -67,5 +67,7 @@ namespace TourismWebProject.Models
         public DbSet<HotelRoom> HotelRoom { get; set; }
 
         public DbSet<Reservation> Reservation { get; set; }
+
+        public DbSet<TourList> TourList { get; set; }
     }
 }

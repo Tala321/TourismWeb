@@ -2855,6 +2855,14 @@
     <Compile Include="Migrations\201903021500145_Tours4.Designer.cs">
       <DependentUpon>201903021500145_Tours4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903031510425_NewChanges33.cs" />
+    <Compile Include="Migrations\201903031510425_NewChanges33.Designer.cs">
+      <DependentUpon>201903031510425_NewChanges33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903031610157_NewChanges34.cs" />
+    <Compile Include="Migrations\201903031610157_NewChanges34.Designer.cs">
+      <DependentUpon>201903031610157_NewChanges34.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
     <Compile Include="Models\AboutViewModel.cs" />
@@ -2888,6 +2896,7 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Models\TourismDbContext.cs" />
+    <Compile Include="Models\TourList.cs" />
     <Compile Include="Models\TourPage.cs" />
     <Compile Include="Models\TourPhoto.cs" />
     <Compile Include="Models\TourViewModel.cs" />
@@ -3219,6 +3228,7 @@
     <Content Include="Areas\Admin\Views\Tours\MainEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Tours\TourCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Tours\TourEdit.cshtml" />
+    <Content Include="Areas\Public\Views\Tours\ConfirmBooking.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3427,6 +3437,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903021500145_Tours4.resx">
       <DependentUpon>201903021500145_Tours4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903031510425_NewChanges33.resx">
+      <DependentUpon>201903031510425_NewChanges33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903031610157_NewChanges34.resx">
+      <DependentUpon>201903031610157_NewChanges34.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

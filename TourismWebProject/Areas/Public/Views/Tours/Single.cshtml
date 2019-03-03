@@ -27,7 +27,7 @@
             <div class="col-lg-3 sidebar">
                 <div class="sidebar-wrap bg-light ftco-animate">
                     <h3 class="heading mb-4">Find Tour</h3>
-                    @using (Html.BeginForm("Search", "Hotels", FormMethod.Post))
+                    @using (Html.BeginForm("Search", "Tours", FormMethod.Post))
                     {
                         <div class="select-wrap one-third">
                             <div class="form-group">
@@ -38,6 +38,7 @@
                                 <label for="HotelCity">City/Region:</label><br />
                                 <select class="crs-country form-control" name="HotelCity" id="ABC"></select>
                             </div>
+
                             <div class="form-group">
                                 <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
                             </div>
@@ -70,50 +71,47 @@
                        
                         </div>
                         <div class="d-md-flex mt-5 mb-5">
-                            <h6>Price:@ViewData["TourPrice"]$ per person</h6>
+                            <h6>Price:@ViewData["TourPrice"]$</h6>
                         </div>
                             <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                 <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                     <h4 class="mb-5">Check Availability &amp; Booking</h4>
-                                    <small>Single room:1 person; Double:2 people; Suit: more than 2 less than 8</small>
-                                    @if (Convert.ToInt32(ViewData["BookeStatus"]) == 1)
+                                    @if (Convert.ToInt32(ViewData["NoPlaces"]) == 0)
                                     {
-                                        <h4>Successfully booked</h4> ;
+                                        <h4>No available place</h4> ;
                                     }
-                                    else if (Convert.ToInt32(ViewData["BookeStatus"]) == 2)
+                                    else
                                     {
-                                        <h4>Please try again,and check entered data/The room isn't available on the dates</h4>;
-                                    }
+                                        if (Convert.ToInt32(ViewData["BookeStatus"]) == 1)
+                                        {
+                                            <h4>Successfully booked</h4> ;
+                                        }
+                                        else if (Convert.ToInt32(ViewData["BookeStatus"]) == 2)
+                                        {
+                                            <h4>Please try again</h4>;
+                                        }
 
-                                    @using (Html.BeginForm("Booking", "Hotels", FormMethod.Post))
-                                    {<div class="fields">
-                                            <div class="row">
-                                                <input type="hidden" name="HotelId" class="form-control" value="@ViewData["HotelId"]">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input type="text" id="checkin_date" name="ReservationDateFrom" class="form-control" placeholder="Date from">
+                                        <h5>Number of travelers</h5>
+                                        using (Html.BeginForm("Booking", "Tours", FormMethod.Post))
+                                        {<div class="fields">
+                                                <div class="row">
+                                                    <input type="hidden" name="TourId" class="form-control" value="@ViewData["TourId"] ">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.DropDownList("RoomCapacity", new SelectList(ViewBag.AvailablePlace), new { @class = "form-control" })
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input type="text" id="checkin_date" name="ReservationDateTo" class="form-control" placeholder="Date to">
+                                                    <div class="col-md-12">
+                                                        <h4>Please contact us if you have some requests</h4>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        @Html.DropDownList("RoomId", new SelectList(ViewBag.Rooms, "RoomId", "RoomName"), new { @class = "form-control" })
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <h4>Please contact us if you have some requests</h4>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="submit" value="Check Availability" class="btn btn-primary py-3">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="submit" value="Check Availability" class="btn btn-primary py-3">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        }
                                     }
                                 </div>
                             </div>

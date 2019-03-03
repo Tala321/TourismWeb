@@ -72,12 +72,10 @@
                     {
                         Tour = Model.Tour.Skip(6 * Convert.ToInt32(ViewData["PageNum"]));
                     }
-                    @*@if (ViewData["Country"] != null && ViewData["City"] != null || ViewData["Country"] != null && ViewData["City"] == null)
+                    @if (ViewData["Country"] != null && ViewData["City"] != null || ViewData["Country"] != null && ViewData["City"] == null)
                     {
                         Tour = Model.Tour;
-                    }
-
-                 
+                    }                
                     @if (Convert.ToString(ViewData["Country"]) == "No such country" || Convert.ToString(ViewData["City"]) == "No such city")
                     {
                         Tour = EmptyList;
@@ -95,7 +93,7 @@
                         {
                             Tour = EmptyList;
                         }
-                    }*@
+                    }
 
 
 
@@ -103,9 +101,9 @@
                     {
                         if (item.TourStatus == 1)
                         {
-                            //if (ViewData["Country"] == null || item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.HotelCity == Convert.ToString(ViewData["City"]) || item.HotelCountry == Convert.ToString(ViewData["Country"]) && ViewData["City"] == null || item.RatingId == Convert.ToInt32(ViewData["Rating"]) && item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.HotelCity == Convert.ToString(ViewData["City"]) || item.HotelCountry == Convert.ToString(ViewData["Country"]) && item.RatingId == Convert.ToInt32(ViewData["Rating"]) || item.RatingId == Convert.ToInt32(ViewData["Rating"]) && ViewData["Country"] == null)
-                            //{
-                            //NoResultCount++;
+                            if (ViewData["Country"] == null || item.Hotel.HotelCountry == Convert.ToString(ViewData["Country"]) && item.Hotel.HotelCity == Convert.ToString(ViewData["City"]) || item.Hotel.HotelCountry == Convert.ToString(ViewData["Country"]) && ViewData["City"] == null )
+                            {
+                                NoResultCount++;
                                 <div class="col-md-4 ftco-animate">
                                     <div class="destination">
                                         <a href="~/Public/Tours/Single/@item.TourId" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Assets/images/@item.TourPic);">
@@ -124,16 +122,16 @@
                                         </div>
                                     </div>
                                 </div>
-                           // }
+                            }
                         }
                     }
 
-                    @*@if (NoResultCount == 0)
+                    @if (NoResultCount == 0)
                     {
                         <div class="col-md-4 ftco-animate">
                             <h3>No Result Found</h3>
                         </div>
-                    }*@
+                    }
 
                 </div>
 
