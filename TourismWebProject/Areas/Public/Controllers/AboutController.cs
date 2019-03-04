@@ -7,7 +7,7 @@ using TourismWebProject.Models;
 
 namespace TourismWebProject.Areas.Public.Controllers
 {
-    public class AboutController : Controller
+    public class AboutController : BaseController
     {
         TourismDbContext db = new TourismDbContext();
         // GET: Public/About

@@ -19,8 +19,6 @@ namespace TourismWebProject.Models
         [MinLength(3)]
         public  string MainMenuName { get; set; }
 
-        [Required]
-        public bool MainMenuStatus { get; set; }
 
         [Required]
         public int MainMenuOrder { get; set; }

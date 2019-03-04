@@ -8,7 +8,7 @@ using TourismWebProject.Models;
 
 namespace TourismWebProject.Areas.Public.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : BaseController
     {
         TourismDbContext db = new TourismDbContext();
 

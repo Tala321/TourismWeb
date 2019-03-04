@@ -7,13 +7,13 @@ namespace TourismWebProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class NewChanges34 : IMigrationMetadata
+    public sealed partial class Newchanges35 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NewChanges34));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Newchanges35));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903031610157_NewChanges34"; }
+            get { return "201903041457417_New changes35"; }
         }
         
         string IMigrationMetadata.Source

@@ -31,7 +31,6 @@ namespace TourismWebProject.Models
         public string TestimonialHeading { get; set; }
 
         [Required]
-        [MaxLength(250)]
         public string TestimonialText { get; set; }
 
 
@@ -44,13 +43,6 @@ namespace TourismWebProject.Models
         [MaxLength(250)]
         public string NewsLetterText { get; set; }
 
-        [Required]
-        [MaxLength(250)]
-        public string FactHeading { get; set; }
-
-        [Required]
-        [MaxLength(300)]
-        public string FactText { get; set; }
 
     }
 }

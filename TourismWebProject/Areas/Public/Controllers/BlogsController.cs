@@ -9,7 +9,7 @@ using TourismWebProject.Models;
 
 namespace TourismWebProject.Areas.Public.Controllers
 {
-    public class BlogsController : Controller
+    public class BlogsController : BaseController
     {
         TourismDbContext db = new TourismDbContext();
 

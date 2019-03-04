@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace TourismWebProject.Areas.Public.Controllers
 {
-    public class ToursController : Controller
+    public class ToursController : BaseController
     {
         TourismDbContext db = new TourismDbContext();
 
