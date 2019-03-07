@@ -38,10 +38,10 @@
                                         <td>@item.ContactId</td>
                                         <td>@item.ContactBackPic</td>
                                         <td>@item.ContactBackPicText</td>
-                                        <td>@item.ContactAddress</td>
+                                        <td>@item.ContactAddress.Split(',')[0]...</td>
                                         <td>@item.ContactPhone</td>
                                         <td>@item.ContactEmail</td>
-                                        <td>@item.ContactOfficeLocation</td>
+                                        <td>@item.ContactOfficeLocation.Split('=')[0]...</td>
                                         <td>@Html.ActionLink("Edit", "MainEdit", "Contact", new { id = item.ContactId }, new { @class = "btn btn-primary" })</td>
                                     </tr>
                                 </tbody>

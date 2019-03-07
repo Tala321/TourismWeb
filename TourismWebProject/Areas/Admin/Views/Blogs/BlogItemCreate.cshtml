@@ -21,16 +21,16 @@
                             {
                                 <div class="form-group ">
                                     <label for="BlogItemTitle">Title</label>
-                                    <input type="text" class="form-control" name="BlogItemTitle">
+                                    <input type="text" required="" class="form-control" name="BlogItemTitle">
                                 </div>
                                 <div class="form-group ">
                                     <label for="BlogItemCover">Cover photo</label>
                                     <input type="file" class="form-control" name="BlogItemCover">
                                 </div>
-                                <textarea name="BlogItemSource" id="text"></textarea>
+                                <textarea name="BlogItemSource"  required="" id="text"></textarea>
                                 <div class="form-group mt-2">
                                     <label for="BlogItemAuthor">Author</label>
-                                    <input type="text" class="form-control" name="BlogItemAuthor" value="@ViewData["BlogItemAuthor"]">
+                                    <input type="text" required=""  class="form-control" name="BlogItemAuthor" value="@ViewData["BlogItemAuthor"]">
                                 </div>
                                 <div class="mt-3 form-group">
                                     <h4>Select Category</h4>

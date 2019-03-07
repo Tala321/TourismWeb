@@ -6,16 +6,22 @@ using System.Web;
 using System.Web.Mvc;
 using TourismWebProject.Models;
 using System.IO;
+using System.Threading;
 
 namespace TourismWebProject.Areas.Admin.Controllers
 {
     public class HotelsController : Controller
     {
+
+      
+
+       
         TourismDbContext db = new TourismDbContext();
 
         // GET: Admin/Hotels
         public ActionResult Index()
         {
+
             HotelViewModel hotelViewModel = new HotelViewModel()
             {
                 HotelPage = db.HotelPage.ToList(),
@@ -80,6 +86,9 @@ namespace TourismWebProject.Areas.Admin.Controllers
             ViewBag.StarRating = db.Rating.ToList();
             return View();
         }
+
+
+
 
         [HttpPost]
         public ActionResult HotelCreate([Bind(Exclude = "HotelPic")]Hotel hotel, IEnumerable<HttpPostedFileBase> HotelPic, HttpPostedFileBase HotelCoverPic)

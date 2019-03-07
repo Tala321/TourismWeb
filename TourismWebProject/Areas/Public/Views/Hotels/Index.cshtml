@@ -93,10 +93,6 @@
                     {
                         hotels = Model.Hotel.FindAll(x => x.RatingId == Convert.ToInt32(ViewData["Rating"]));
                     }
-                    @if (ViewData["Country"] == null && ViewData["City"] == null && ViewData["Rating"] != null)
-                    {
-                        hotels = Model.Hotel.FindAll(x => x.RatingId == Convert.ToInt32(ViewData["Rating"]));
-                    }
                     @if (Convert.ToString(ViewData["Country"]) == "No such country" || Convert.ToString(ViewData["City"]) == "No such city")
                     {
                         hotels = EmptyList;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -49,6 +50,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult MainEdit([Bind(Exclude = "ContactBackPic")] ContactPage contactPage, HttpPostedFileBase ContactBackPic)
         {
             foreach (var item in db.ContactPage.ToList())
@@ -62,8 +64,18 @@ namespace TourismWebProject.Areas.Admin.Controllers
                             item.ContactBackPicText = contactPage.ContactBackPicText;
                             item.ContactAddress = contactPage.ContactAddress;
                             item.ContactEmail = contactPage.ContactEmail;
-                            item.ContactOfficeLocation = contactPage.ContactOfficeLocation;
                             item.ContactPhone = contactPage.ContactPhone;
+
+                            var dir = Server.MapPath("~\\OfficeLocation");
+
+                            var fileName = "OfficeLocation"  + ".txt";
+                            var file = Path.Combine(dir, fileName);
+
+                            StreamWriter tw = new StreamWriter(file);
+                            tw.WriteLine(contactPage.ContactOfficeLocation);
+                            tw.Close();
+                            item.ContactOfficeLocation = fileName;
+
                         }
                         if (ContactBackPic != null)
                         {

@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using TourismWebProject.Models;
+using System.IO;
 
 namespace TourismWebProject.Areas.Public.Controllers
 {
@@ -16,6 +17,11 @@ namespace TourismWebProject.Areas.Public.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            var dir = Server.MapPath("~\\OfficeLocation");
+            var file = Path.Combine(dir, db.ContactPage.First().ContactOfficeLocation);
+            var fileContent = System.IO.File.ReadAllText(file);
+            ViewData["Location"] = fileContent;
+
             ContactViewModel viewModel = new ContactViewModel()
             {
                 contactForm = db.ContactForm.ToList(),

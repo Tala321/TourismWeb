@@ -31,47 +31,61 @@ namespace TourismWebProject.Areas.Public.Controllers
         //Single Tour
         public ActionResult Single(int? id)
         {
-
-            foreach (var item in db.Tour.Include(i => i.Hotel).ToList())
+            if (id != null && db.Hotel.Any(i => i.HotelId == id))
             {
-                if (item.TourId == id)
+                foreach (var item in db.Tour.Include(i => i.Hotel).ToList())
                 {
-                    TempData["HotelId"] = item.Hotel.HotelId;
-                    CheckAvailablePlace(Convert.ToInt32(id), item.Hotel.HotelId);
-                  
-                    ViewData["TourId"] = id;
-                    ViewData["TourName"] = item.TourName;
-                    ViewData["TourPic"] = item.TourPic;
-                    ViewData["TourDescription"] = item.TourDescription;
-                    ViewData["TourPrice"] = item.TourPrice;
-                    ViewData["DateFrom"] = item.DateFrom.ToString("dd/MM/yyyy");
-                    ViewData["DateTo"] = item.DateTo.ToString("dd/MM/yyyy");
-                    ViewData["HotelName"] = item.Hotel.HotelName;
-                    ViewData["HotelCountry"] = item.Hotel.HotelCountry;
-                    ViewData["CityName"] = item.Hotel.HotelCity;
+                    if (item.TourId == id)
+                    {
+                        TempData["HotelId"] = item.Hotel.HotelId;
+                        CheckAvailablePlace(Convert.ToInt32(id), item.Hotel.HotelId);
+
+                        ViewData["TourId"] = id;
+                        ViewData["TourName"] = item.TourName;
+                        ViewData["TourPic"] = item.TourPic;
+                        ViewData["TourDescription"] = item.TourDescription;
+                        ViewData["TourPrice"] = item.TourPrice;
+                        ViewData["DateFrom"] = item.DateFrom.ToString("dd/MM/yyyy");
+                        ViewData["DateTo"] = item.DateTo.ToString("dd/MM/yyyy");
+                        ViewData["HotelName"] = item.Hotel.HotelName;
+                        ViewData["HotelCountry"] = item.Hotel.HotelCountry;
+                        ViewData["CityName"] = item.Hotel.HotelCity;
+                    }
                 }
+
+                //show available number of travelers
+                CountTravelers();
+
+                TourViewModel tourViewModel = new TourViewModel()
+                {
+                    TourPage = db.TourPage.ToList(),
+                    Tour = db.Tour.Include(x => x.Hotel).ToList()
+                };
+                ViewData["NoPlaces"] = TempData["NoPlaces"];
+                ViewData["BookeStatus"] = TempData["BookStatus"];
+                ViewBag.AvailablePlace = TempData["TravelersNum"];
+                ViewBag.Rooms = db.Room.ToList();
+                return View(tourViewModel);
             }
-
-            //show available number of travelers
-            CountTravelers();
-
-            TourViewModel tourViewModel = new TourViewModel()
+            else
             {
-                TourPage = db.TourPage.ToList(),
-                Tour = db.Tour.Include(x => x.Hotel).ToList()
-            };
-            ViewData["NoPlaces"] = TempData["NoPlaces"];
-            ViewData["BookeStatus"] = TempData["BookStatus"];
-            ViewBag.AvailablePlace = TempData["TravelersNum"];
-            ViewBag.Rooms = db.Room.ToList();
-            return View(tourViewModel);
+                return RedirectToAction("Index");
+            }
         }
 
         //get items in a particular page
         public ActionResult Page(int? id)
-        {
-            TempData["PageNum"] = id - 1;
+        { int TourItemCount = (Convert.ToInt32(id) - 1) * 6;
+
+            if (id != null && TourItemCount < db.Tour.OrderByDescending(i => i.TourId).First().TourId)
+            {
+                TempData["PageNum"] = id - 1;
             return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
         //--------------
 

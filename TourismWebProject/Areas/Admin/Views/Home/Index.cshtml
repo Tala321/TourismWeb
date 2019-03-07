@@ -38,11 +38,11 @@
                                     <tr>
                                         <td>@item.HomeBackPic</td>
                                         <td>@item.HomeHeading</td>
-                                        <td>@item.HomeText</td>
+                                        <td>@item.HomeText.Split(',')[0]...</td>
                                         <td>@item.TestimonialHeading</td>
-                                        <td>@item.TestimonialText</td>
+                                        <td>@item.TestimonialText.Split(',')[0]...</td>
                                         <td>@item.NewsLetterHeading</td>
-                                        <td>@item.NewsLetterText</td>
+                                        <td>@item.NewsLetterText.Split(',')[0]...</td>
                                         <td>@Html.ActionLink("Edit", "MainEdit", "Home", new { id = item.HomeId }, new { @class = "btn btn-primary" })</td>
                                     </tr>
                                 </tbody>

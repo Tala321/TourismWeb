@@ -51,8 +51,6 @@ namespace TourismWebProject.Models
         [ForeignKey("HotelId")]
         public Hotel Hotel { get; set; }
 
-        public ICollection<TourPhoto> TourPhoto { get; set; }
-
         public ICollection<TourList> TourList { get; set; }
     }
 }

@@ -21,28 +21,28 @@
                             @using (Html.BeginForm("MainEdit", "Contact", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 <div class="form-group ">
-                                    <label for="ContactBackPic">Background picture text</label>
+                                    <label for="ContactBackPic">Background picture </label>
                                     <input type="file" class="form-control" name="ContactBackPic">
                                 </div>
                                 <div class="form-group ">
                                     <label for="ContactBackPicText">Background picture text</label>
-                                    <input type="text" class="form-control" name="ContactBackPicText" value='@ViewData["ContactPageBackPicText"]'>
+                                    <input type="text"  required="" class="form-control" name="ContactBackPicText" value='@ViewData["ContactPageBackPicText"]'>
                                 </div>
                                 <div class="form-group">
                                     <label for="ContactAddress">Address</label>
-                                    <input type="text" class="form-control" name="ContactAddress" value='@ViewData["ContactPageAddress"]'>
+                                    <input type="text" required=""  class="form-control" name="ContactAddress" value='@ViewData["ContactPageAddress"]'>
                                 </div>
                                 <div class="form-group ">
                                     <label for="ContactPhone">phone</label>
-                                    <input type="text" class="form-control" name="ContactPhone" value='@ViewData["ContactPagePhone"] '>
+                                    <input type="text" required=""  class="form-control" name="ContactPhone" value='@ViewData["ContactPagePhone"] '>
                                 </div>
                                 <div class="form-group ">
                                     <label for="ContactEmail">Email</label>
-                                    <input type="text" class="form-control" name="ContactEmail" value='@ViewData["ContactPageEmail"] '>
+                                    <input type="text" required=""  class="form-control" name="ContactEmail" value='@ViewData["ContactPageEmail"] '>
                                 </div>
                                 <div class="form-group ">
                                     <label for="ContactOfficeLocation">Location</label>
-                                    <input type="text" class="form-control" name="ContactOfficeLocation" value='@ViewData["ContactPageOfficeLocation"] '>
+                                    <input type="text" required=""  class="form-control" name="ContactOfficeLocation" value='@ViewData["ContactPageOfficeLocation"] '>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             }

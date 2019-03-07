@@ -19,11 +19,11 @@ namespace TourismWebProject.Areas.Admin.Controllers
         {
             TourViewModel tourViewModel = new TourViewModel()
             {
-                Tour = db.Tour.Include(i=>i.Hotel).ToList(),
+                Tour = db.Tour.Include(i => i.Hotel).ToList(),
                 TourPage = db.TourPage.ToList()
-               
+
             };
-         
+
             return View(tourViewModel);
         }
 
@@ -186,10 +186,15 @@ namespace TourismWebProject.Areas.Admin.Controllers
         //check hotel for  availability
         public bool Checking(Tour tour)
         {
-            if (tour.DateFrom.Year == DateTime.Today.Year && tour.DateTo.Year == DateTime.Today.Year && tour.DateFrom.Month >= DateTime.Today.Month && tour.DateTo.Month >= DateTime.Today.Month)
+            //possibility to book only during the year// refresh page if the below statement is false
+            if (tour.DateFrom > DateTime.Today && tour.DateTo > DateTime.Today)
             {
                 if (tour.DateFrom < tour.DateTo)
                 {
+
+                    //get the number of booked hotel  in the reservation list
+                    var countofReservation = db.Reservation.Where(i => (i.ReservationServiceTypeId == tour.HotelId) && (i.ReservationDateFrom.Month == tour.DateFrom.Month || i.ReservationDateTo.Month == tour.DateTo.Month || i.ReservationDateTo.Month == tour.DateFrom.Month)).Count();
+
                     //uses to check avilability of dates (counts rooms)
                     var CheckCount = 0;
 
@@ -201,31 +206,74 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
                     int Days = dateTo.Day - dateFrom.Day;
 
+                    //to count total
+                    TempData["Total"] = Days;
+
                     int Reservationlimit = 0;
 
-                    //get the number of booked hotel  in the reservation list
-                    var Hotelcount = db.Reservation.Where(i => i.ReservationServiceTypeId == tour.HotelId).Count();
+                    var count = 0;
 
                     if (Month == 1)
                     {
+                    
                         Reservationlimit = 31 - dateFrom.Day + dateTo.Day;
+                        //to count total
+                        TempData["Total"] = Reservationlimit;
                     }
+                    //-----
 
-                    //check max stay period (30 days)
-                    if (Month == 0 || Month == 1 && Reservationlimit < 32)
+                    if (tour.DateFrom != null && tour.DateTo != null)
                     {
-                        foreach (var item in db.Reservation.Where(i => (i.ReservationServiceTypeId == tour.HotelId) && SqlFunctions.DatePart("dayofyear", i.ReservationDateFrom) < tour.DateFrom.DayOfYear && SqlFunctions.DatePart("dayofyear", i.ReservationDateTo) < tour.DateFrom.DayOfYear || (i.ReservationServiceTypeId == tour.HotelId) && SqlFunctions.DatePart("dayofyear", i.ReservationDateFrom) > tour.DateTo.DayOfYear && SqlFunctions.DatePart("dayofyear", i.ReservationDateTo) > tour.DateTo.DayOfYear))
+                        //check max stay period (30 days)
+                        if (Month == 0 || Month == 1 && Reservationlimit < 32)
                         {
-                            CheckCount++;
-                            if (Hotelcount == CheckCount)
+                            foreach (var item in db.Reservation.Where(i => (i.ReservationServiceTypeId == tour.HotelId) && (i.ReservationDateFrom.Month == tour.DateFrom.Month || i.ReservationDateTo.Month == tour.DateTo.Month || i.ReservationDateTo.Month == tour.DateFrom.Month || i.ReservationDateFrom.Month == tour.DateTo.Month)).ToList())
                             {
+                                count++;
+                                //--
+                                if (Month == 1)
+                                {
+                                    if (item.ReservationDateFrom.Month == item.ReservationDateTo.Month)
+                                    {
+                                        if (dateFrom.Month == item.ReservationDateFrom.Month && dateFrom.Day > item.ReservationDateTo.Day)
+                                        {
+
+                                            if (countofReservation == CheckCount)
+                                            {
+
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                    else if ((dateFrom.Month == item.ReservationDateFrom.Month && dateFrom.Day < item.ReservationDateFrom.Day || dateFrom.Month == item.ReservationDateTo.Month && dateFrom.Day > item.ReservationDateTo.Day) && dateTo.Month != item.ReservationDateTo.Month)
+                                    {
+                                        CheckCount++;
+
+                                        if (countofReservation == CheckCount)
+                                        {
+                                            return true;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (dateFrom.Month == item.ReservationDateFrom.Month && dateFrom.Day < item.ReservationDateFrom.Day && item.ReservationDateFrom.Day > dateTo.Day || dateTo.Month == item.ReservationDateTo.Month && dateFrom.Day > item.ReservationDateTo.Day && item.ReservationDateTo.Day < dateTo.Day)
+                                    {
+                                        CheckCount++;
+
+                                        if (countofReservation == CheckCount)
+                                        {
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                            //if there is no such hotel in the reservation list
+                            if (count == 0)
+                            {
+                                //Reservation(reservation, hotel, room);
                                 return true;
                             }
-                        }
-
-                        if (CheckCount == 0)
-                        {
-                            return true;
                         }
                     }
                 }
@@ -249,7 +297,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
                     ReservationServiceTypeId = tour.HotelId,
                     ReservationServiceId = item.RoomId,
                     ReservationStatus = true,
-                    ReservationTotal = item.room.RoomPrice
+                    ReservationTotal = item.room.RoomPrice * Convert.ToInt32(TempData["Total"])
                 };
                 db.Reservation.Add(TourReservation);
                 db.SaveChanges();

@@ -16,7 +16,7 @@ namespace TourismWebProject.Areas.Public.Controllers
         // GET: Public/Blogs
         public ActionResult Index()
         {
-            
+
 
             BlogViewModel blogViewModel = new BlogViewModel()
             {
@@ -34,39 +34,53 @@ namespace TourismWebProject.Areas.Public.Controllers
         //Single Blog
         public ActionResult Single(int? id)
         {
-            var dir = Server.MapPath("~\\BlogItems");
-
-            foreach (var item in db.BlogItem.ToList())
+            if (id != null && db.BlogItem.Any(i => i.BlogItemId == id))
             {
-                if (item.BlogItemId == id)
+                var dir = Server.MapPath("~\\BlogItems");
+
+                foreach (var item in db.BlogItem.ToList())
                 {
-                    TempData["BlogItemId"] = id;
-                    ViewData["BlogItemId"] = id;
-                    ViewData["BlogItemTitle"] = item.BlogItemTitle;
-                    ViewData["admin"] = db.Admin.ToList();
-                    var file = Path.Combine(dir, item.BlogItemSource);
-                    var fileContent = System.IO.File.ReadAllText(file);
-                    ViewData["BlogItem"] = fileContent;
+                    if (item.BlogItemId == id)
+                    {
+                        TempData["BlogItemId"] = id;
+                        ViewData["BlogItemId"] = id;
+                        ViewData["BlogItemTitle"] = item.BlogItemTitle;
+                        ViewData["admin"] = db.Admin.ToList();
+                        var file = Path.Combine(dir, item.BlogItemSource);
+                        var fileContent = System.IO.File.ReadAllText(file);
+                        ViewData["BlogItem"] = fileContent;
 
+                    }
                 }
-            }
 
-            BlogViewModel blogViewModel = new BlogViewModel()
+                BlogViewModel blogViewModel = new BlogViewModel()
+                {
+                    blogCategories = db.BlogCategory.ToList(),
+                    blogItems = db.BlogItem.ToList(),
+                    blogPage = db.BlogPage.ToList(),
+                    comments = db.Comment.Include(x => x.User).ToList()
+                };
+                return View(blogViewModel);
+            }
+            else
             {
-                blogCategories = db.BlogCategory.ToList(),
-                blogItems = db.BlogItem.ToList(),
-                blogPage = db.BlogPage.ToList(),
-                comments = db.Comment.Include(x => x.User).ToList()
-            };
-            return View(blogViewModel);
+                return RedirectToAction("Index");
+            }
         }
 
         //Category
         public ActionResult Category(int? id)
         {
-            TempData["CategoryId"] = id;
+            if (id != null && db.BlogCategory.Any(i => i.BlogCategoryId == id))
+            {
+                TempData["CategoryId"] = id;
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
 
@@ -74,19 +88,33 @@ namespace TourismWebProject.Areas.Public.Controllers
         [HttpPost]
         public ActionResult Comment(Comment comment)
         {
-            comment.Status = "Not Approved";
-            comment.CommentDate = DateTime.Now;
-            comment.UserId = 1;//Change it!============================================================
-            db.Comment.Add(comment);
-            db.SaveChanges();
+            if (comment != null)
+            {
+                comment.Status = "Not Approved";
+                comment.CommentDate = DateTime.Now;
+                comment.UserId = 1;//Change it!============================================================
+                db.Comment.Add(comment);
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Single/" + TempData["BlogItemId"]);
+
         }
 
         //get items in a particular page
         public ActionResult Page(int? id)
         {
-            TempData["PageNum"] = id - 1;
-            return RedirectToAction("Index");
+            int BlogItemCount = (Convert.ToInt32(id) - 1) * 8;
+
+            if (id != null && BlogItemCount < db.BlogItem.OrderByDescending(i => i.BlogItemId).First().BlogItemId)
+            {
+                TempData["PageNum"] = id - 1;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }

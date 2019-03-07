@@ -58,6 +58,5 @@ namespace TourismWebProject.Models
 
         public ICollection<HotelRoom> HotelRoom { get; set; }
 
-        public ICollection<HotelPhoto> HotelPhoto { get; set; }
     }
 }
