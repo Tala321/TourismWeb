@@ -18,8 +18,12 @@ namespace TourismWebProject.Areas.Public.Controllers
         public ActionResult Index()
         {
             //set all hotels  and rooms status 1(visible)
-            HotelStatus();
-            RoomStatus();
+            if (TempData["SearchResults"]==null)
+            {
+                HotelStatus();
+                RoomStatus();
+            }
+
             //filer results see action "Search"
             ViewData["Country"] = TempData["CountryName"];
             ViewData["City"] = TempData["CityName"];
@@ -40,12 +44,7 @@ namespace TourismWebProject.Areas.Public.Controllers
         //Single Hotel
         public ActionResult Single(int? id)
         {
-            //set all rooms and hotel visible
-            if (TempData["ShowAllRooms"] != null)
-            {
-                //set all romms status1(available)
-                RoomStatus();         
-            }
+
             if (id != null && db.Hotel.Any(i => i.HotelId == id))
             {
                 var dir = Server.MapPath("~\\HotelItems");
@@ -124,7 +123,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                 {
 
                     //get the number of booked hotel  in the reservation list
-                    var countofReservation = db.Reservation.Where(i => (i.ReservationServiceTypeId == hotel.HotelId) && (i.ReservationServiceId == room.RoomId) && (i.ReservationDateFrom.Month == reservation.ReservationDateFrom.Month || i.ReservationDateTo.Month == reservation.ReservationDateTo.Month || i.ReservationDateTo.Month == reservation.ReservationDateFrom.Month)).Count();
+                    var countofReservation = db.Reservation.Where(i => (i.ReservationServiceTypeId == hotel.HotelId && i.ReservationStatus == true) && (i.ReservationServiceId == room.RoomId) && (i.ReservationDateFrom.Month == reservation.ReservationDateFrom.Month || i.ReservationDateTo.Month == reservation.ReservationDateTo.Month || i.ReservationDateTo.Month == reservation.ReservationDateFrom.Month)).Count();
 
                     //uses to check avilability of dates (counts rooms)
                     var CheckCount = 0;
@@ -152,7 +151,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                         //check max stay period (30 days)
                         if (Month == 0 || Month == 1 && Reservationlimit < 32)
                         {
-                            foreach (var item in db.Reservation.Where(i => (i.ReservationServiceTypeId == hotel.HotelId) && (i.ReservationServiceId == room.RoomId) && (i.ReservationDateFrom.Month == reservation.ReservationDateFrom.Month || i.ReservationDateTo.Month == reservation.ReservationDateTo.Month || i.ReservationDateTo.Month == reservation.ReservationDateFrom.Month || i.ReservationDateFrom.Month == reservation.ReservationDateTo.Month)).ToList())
+                            foreach (var item in db.Reservation.Where(i => (i.ReservationServiceTypeId == hotel.HotelId && i.ReservationStatus == true) && (i.ReservationServiceId == room.RoomId) && (i.ReservationDateFrom.Month == reservation.ReservationDateFrom.Month || i.ReservationDateTo.Month == reservation.ReservationDateTo.Month || i.ReservationDateTo.Month == reservation.ReservationDateFrom.Month || i.ReservationDateFrom.Month == reservation.ReservationDateTo.Month)).ToList())
                             {
                                 count++;
                                 //--
@@ -257,11 +256,7 @@ namespace TourismWebProject.Areas.Public.Controllers
         //5)Country ,city ,dates
         public ActionResult Search([Bind(Exclude = "ReservationDateFrom,ReservationDateTo,RoomPrice,ReservationDateFrom,ReservationDateTo")] Hotel hotel, [Bind(Include = "ReservationDateFrom,ReservationDateTo")]Reservation reservation)
         {
-            //possibility to search only during the year// refresh page if the below statement is false
-            if (reservation.ReservationDateFrom > DateTime.Today && reservation.ReservationDateTo > DateTime.Today)
-            {
-                if (reservation.ReservationDateFrom < reservation.ReservationDateTo)
-                {
+           
                     //uses to check avilability of dates (counts rooms)
 
                     var dateFrom = reservation.ReservationDateFrom;
@@ -373,6 +368,10 @@ namespace TourismWebProject.Areas.Public.Controllers
 
                             //if selected:Country ,city ,dates
                             if (hotel.HotelCity != null && hotel.HotelCountry != null && Convert.ToInt32(hotel.RatingId) == 1 && reservation.ReservationDateFrom.Year != 0001 && reservation.ReservationDateTo.Year != 0001)
+                    { //possibility to search only during the year// refresh page if the below statement is false
+                        if (reservation.ReservationDateFrom > DateTime.Today && reservation.ReservationDateTo > DateTime.Today)
+                        {
+                            if (reservation.ReservationDateFrom < reservation.ReservationDateTo)
                             {
                                 //if the dates entered wrong ,not to show any results
                                 TempData["CountryName"] = "No such country";
@@ -392,7 +391,7 @@ namespace TourismWebProject.Areas.Public.Controllers
 
                                                 if (db.Reservation.Any(w => w.ReservationServiceTypeId == item.HotelId))
                                                 {
-                                                    foreach (var item1 in db.Reservation.Where(d => d.ReservationServiceTypeId == item.HotelId).ToList())
+                                                    foreach (var item1 in db.Reservation.Where(d => d.ReservationServiceTypeId == item.HotelId && d.ReservationStatus == true).ToList())
                                                     {
                                                         foreach (var item2 in db.HotelRoom.ToList())
                                                         {
@@ -475,6 +474,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                 //to show "No result found" if the dates are wrong
                 TempData["CountryName"] = "No such country";
             }
+            TempData["SearchResults"] = 1;
             return RedirectToAction("Index");
         }
 

@@ -193,7 +193,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
                 {
 
                     //get the number of booked hotel  in the reservation list
-                    var countofReservation = db.Reservation.Where(i => (i.ReservationServiceTypeId == tour.HotelId) && (i.ReservationDateFrom.Month == tour.DateFrom.Month || i.ReservationDateTo.Month == tour.DateTo.Month || i.ReservationDateTo.Month == tour.DateFrom.Month)).Count();
+                    var countofReservation = db.Reservation.Where(i => (i.ReservationServiceTypeId == tour.HotelId && i.ReservationStatus==true) && (i.ReservationDateFrom.Month == tour.DateFrom.Month || i.ReservationDateTo.Month == tour.DateTo.Month || i.ReservationDateTo.Month == tour.DateFrom.Month)).Count();
 
                     //uses to check avilability of dates (counts rooms)
                     var CheckCount = 0;
@@ -227,7 +227,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
                         //check max stay period (30 days)
                         if (Month == 0 || Month == 1 && Reservationlimit < 32)
                         {
-                            foreach (var item in db.Reservation.Where(i => (i.ReservationServiceTypeId == tour.HotelId) && (i.ReservationDateFrom.Month == tour.DateFrom.Month || i.ReservationDateTo.Month == tour.DateTo.Month || i.ReservationDateTo.Month == tour.DateFrom.Month || i.ReservationDateFrom.Month == tour.DateTo.Month)).ToList())
+                            foreach (var item in db.Reservation.Where(i => (i.ReservationServiceTypeId == tour.HotelId && i.ReservationStatus == true) && (i.ReservationDateFrom.Month == tour.DateFrom.Month || i.ReservationDateTo.Month == tour.DateTo.Month || i.ReservationDateTo.Month == tour.DateFrom.Month || i.ReservationDateFrom.Month == tour.DateTo.Month)).ToList())
                             {
                                 count++;
                                 //--

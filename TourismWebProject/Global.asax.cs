@@ -13,6 +13,7 @@ namespace TourismWebProject
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            Check.Start();
         }
     }
 }
