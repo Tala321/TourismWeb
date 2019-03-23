@@ -8,7 +8,8 @@ using TourismWebProject.Models;
 
 namespace TourismWebProject.Areas.Admin.Controllers
 {
-    public class BlogsController : Controller
+    [AdminAuthenticate]
+    public class BlogsController : BaseController
     {
         TourismDbContext db = new TourismDbContext();
 
@@ -152,7 +153,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
             blogItem.BlogItemSource = fileName;
 
             blogItem.DateTime = DateTime.Now;
-            blogItem.AdminId = 1;//Admin example===========================================================
+            blogItem.AdminId = 1;
             if (BlogItemCover != null)
             {
                 SavePic(BlogItemCover, blogItem);

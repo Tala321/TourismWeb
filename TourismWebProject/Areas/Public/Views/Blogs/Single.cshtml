@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="comment-body">
                                         <h3>@item.User.UserName @item.User.UserSurname</h3>
-                                        <div class="meta">@item.CommentDate</div>
+                                        <div class="meta">@item.CommentDate.ToString("MM/dd/yyyy")</div>
                                         <p>@item.CommentText</p>
                                     </div>
                                 </li>
@@ -57,6 +57,8 @@
                     </ul>
                     <!-- END comment-list -->
 
+                    @if (Session["UserLog"]!=null)
+                    {                   
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
                         @using (Html.BeginForm("Comment", "Blogs", FormMethod.Post))
@@ -76,6 +78,7 @@
                         }
 
                     </div>
+                    }
                 </div>
 
             </div> <!-- .col-md-8 -->

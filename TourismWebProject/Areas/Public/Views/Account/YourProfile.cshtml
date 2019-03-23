@@ -1,0 +1,261 @@
+﻿@model IEnumerable<TourismWebProject.Models.User>
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Assets/css/css/Profile.css" rel="stylesheet" />
+    <title>YourProfile</title>
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        @if (@Model.First().UserPic == null)
+                        {
+                            <h6>No Image</h6>
+                        }
+                        else
+                        {
+                            <img src="~/Assets/Images/@Model.First().UserPic" class="img-responsive" alt="">
+                        }
+
+
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+
+                        <div class="profile-usertitle-name">
+                            @Model.Where(x => x.UserId == Convert.ToInt32(Session["UserLog"])).First().UserName   @Model.Where(x => x.UserId == Convert.ToInt32(Session["UserLog"])).First().UserSurname
+
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+                        @using (Html.BeginForm("UploadPhoto", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <input type="file" class="form-control" name="UserPic">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        }
+                    </div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li>
+                                <strong>Phone:</strong> @Model.First().UserPhone;
+                            </li>
+                            <li>
+                                <strong>Email:</strong>@Model.First().UserEmail;
+                            </li>
+                            <li>
+                                <strong>Info:</strong>@Model.First().UserInfo
+                            </li>
+
+                        </ul>
+                        <a href="~/Public/Account/EditInfo" class="btn-danger btn">Edit Info</a>
+
+                        <a href="~/Public/Account/Logout" class="btn-info btn">Logout</a>
+                    </div>
+
+                    <!-- END MENU -->
+                </div>
+            </div>
+            @if (ViewData["Check"] != null)
+            {
+                <div class="col-md-9">
+                    <div class="profile-content">
+                        <div id="wrapper">
+                            <div id="content-wrapper">
+                                <table id="dataTable"></table>
+                                <div class="container-fluid">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="table-responsive ">
+                                                @using (Html.BeginForm("EditInfo", "Account", FormMethod.Post))
+                                                {
+                                                    <div class="form-group ">
+                                                        <label for="UserName">Name:</label>
+                                                        <input type="text" class="form-control" name="UserName" value="@ViewData["UserName"]">
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="UserSurname">Surname:</label>
+                                                        <input type="text" class="form-control" name="UserSurname" value="@ViewData["UserSurname"]">
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="UserPhone">Phone</label>
+                                                        <input type="text" class="form-control" name="UserPhone" value="@ViewData["UserPhone"]">
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="UserEmail">Email:</label>
+                                                        <input type="text" class="form-control" name="UserEmail" value="@ViewData["UserEmail"]">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="AboutPageBackPicText">Info:</label>
+                                                        <textarea type="textarea" required="" class="form-control" name="UserInfo">@ViewData["UserInfo"]</textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                <div class="col-md-9">
+                    <div class="profile-content">
+                        <div id="wrapper">
+                            <div id="content-wrapper">
+                                <table id="dataTable"></table>
+                                <div class="container-fluid">
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            <strong> Hotel history</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive ">
+                                                <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Type</th>
+                                                            <th scope="col">Hotel</th>
+                                                            <th scope="col">Room</th>
+                                                            <th scope="col">From</th>
+                                                            <th scope="col">To</th>
+                                                            <th scope="col">Total$</th>
+                                                            <th scope="col">Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in ViewData["Reservations"] as List<TourismWebProject.Models.Reservation>)
+                                                        {
+                                                            if (item.UserId == Convert.ToInt32(Session["UserLog"]) && item.ServiceTypeId == 1)
+                                                            {
+                                                                <tr>
+                                                                    <td>@item.ServiceType.ServiceTypeName</td>
+                                                                    @foreach (var item1 in ViewData["Hotels"] as List<TourismWebProject.Models.Hotel>)
+                                                                    {
+                                                                        if (item.ReservationServiceTypeId == item1.HotelId)
+                                                                        {
+                                                                            <td>@item1.HotelName</td>
+
+                                                                        }
+                                                                    }
+
+                                                                    @foreach (var item1 in ViewData["Rooms"] as List<TourismWebProject.Models.Room>)
+                                                                    {
+                                                                        if (item.ReservationServiceId == item1.RoomId)
+                                                                        {
+                                                                            <td>@item1.RoomName</td>
+                                                                        }
+                                                                    }
+                                                                    <td>@item.ReservationDateFrom.ToString("MM/dd/yyyy")</td>
+                                                                    <td>@item.ReservationDateTo.ToString("MM/dd/yyyy")</td>
+                                                                    <td>@item.ReservationTotal</td>
+
+                                                                    @if (item.ReservationStatus == true)
+                                                                    {
+                                                                        <td>Valid</td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <td>Invalid</td>
+                                                                    }
+                                                                    <td></td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="container-fluid">
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            <strong> Tours history</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive ">
+                                                <table class="table table-striped  " id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Tour</th>
+                                                            <th scope="col">Hotel</th>
+                                                            <th scope="col">Amout(people)</th>
+                                                            <th scope="col">From</th>
+                                                            <th scope="col">To</th>
+                                                            <th scope="col">Total$</th>
+                                                            <th scope="col">Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    @foreach (var item in ViewData["TourList"] as List<TourismWebProject.Models.TourList>)
+                                                    {
+                                                        if (item.UserId == Convert.ToInt32(Session["UserLog"]))
+                                                        {
+                                                            var total = item.Total / item.Tour.TourPrice;
+
+
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>@item.Tour.TourName</td>
+                                                                    <td>@item.Tour.Hotel.HotelName</td>
+                                                                    <td>@total</td>
+                                                                    <td>@item.Tour.DateFrom.ToString("MM/dd/yyyy")</td>
+                                                                    <td>@item.Tour.DateTo.ToString("MM/dd/yyyy")</td>
+                                                                    <td>@item.Total</td>
+
+                                                                    @if (item.Tour.TourStatus == 1)
+                                                                    {
+                                                                        <td>Valid</td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <td>Invalid</td>
+                                                                    }
+
+                                                                </tr>
+                                                            </tbody>
+                                                        }
+
+                                                    }
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <br>
+    <br>
+</body>
+</html>

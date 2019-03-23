@@ -9,15 +9,13 @@ using System.Web;
 namespace TourismWebProject.Models
 {
     [Table(name: "Users")]
-    public class User : IdentityUser
+    public class User 
     {
         public User()
         {
             Reservation = new HashSet<Reservation>();
 
             Comment = new HashSet<Comment>();
-
-            ContactForm = new HashSet<ContactForm>();
 
             TourList = new HashSet<TourList>();
         }
@@ -51,17 +49,11 @@ namespace TourismWebProject.Models
 
         [Required]
         [MaxLength(100)]
-        public string UserCountry { get; set; }
-
-        [Required]
-        [MaxLength(100)]
         public string UserPassword { get; set; }
 
         public ICollection<Reservation> Reservation { get; set; }
 
         public ICollection<Comment> Comment { get; set; }
-
-        public ICollection<ContactForm> ContactForm { get; set; }
 
         public ICollection<TourList> TourList { get; set; }
 

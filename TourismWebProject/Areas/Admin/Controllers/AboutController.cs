@@ -7,7 +7,8 @@ using System.Web.Mvc;
 using TourismWebProject.Models;
 namespace TourismWebProject.Areas.Admin.Controllers
 {
-    public class AboutController : Controller
+    [AdminAuthenticate]
+    public class AboutController : BaseController
     {
         TourismDbContext db = new TourismDbContext();
 

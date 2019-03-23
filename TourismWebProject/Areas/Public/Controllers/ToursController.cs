@@ -103,7 +103,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                 }
 
                 TempData["TourId"] = tour.TourId;
-                TempData["UserId"] = 1;//Change it===========================================
+                TempData["UserId"] = Convert.ToInt32(Session["UserLog"]);
                 TempData["Total"] = amount;
                 return RedirectToAction("ConfirmBooking");
             }

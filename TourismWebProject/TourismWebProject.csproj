@@ -55,14 +55,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -1753,6 +1747,7 @@
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\bootstrap\bootstrap-grid.css" />
     <Content Include="Assets\css\bootstrap\bootstrap-reboot.css" />
+    <Content Include="Assets\css\css\Profile.css" />
     <Content Include="Assets\css\css\bootstrap-reboot.css" />
     <Content Include="Assets\css\css\mixins\_text-hide.css" />
     <Content Include="Assets\css\flaticon.css" />
@@ -2662,12 +2657,14 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AboutController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HotelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ToursController.cs" />
     <Compile Include="Areas\Public\Controllers\AboutController.cs" />
+    <Compile Include="Areas\Public\Controllers\AccountController.cs" />
     <Compile Include="Areas\Public\Controllers\BaseController.cs" />
     <Compile Include="Areas\Public\Controllers\BlogsController.cs" />
     <Compile Include="Areas\Public\Controllers\ContactController.cs" />
@@ -2679,15 +2676,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902151147471_DatabaseV1.cs" />
-    <Compile Include="Migrations\201902151147471_DatabaseV1.Designer.cs">
-      <DependentUpon>201902151147471_DatabaseV1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutItem.cs" />
     <Compile Include="Models\AboutViewModel.cs" />
     <Compile Include="Models\AboutPage.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AdminAuthenticate.cs" />
     <Compile Include="Models\BlogCategory.cs" />
     <Compile Include="Models\BlogItem.cs" />
     <Compile Include="Models\BlogPage.cs" />
@@ -3136,6 +3130,8 @@
     <Content Include="Areas\Admin\Assets\Login\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Areas\Admin\Assets\Login\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Areas\Admin\Assets\Login\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Areas\Public\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Public\Views\Account\YourProfile.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3147,13 +3143,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Public\Models\" />
     <Folder Include="Areas\Public\Views\Base\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902151147471_DatabaseV1.resx">
-      <DependentUpon>201902151147471_DatabaseV1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

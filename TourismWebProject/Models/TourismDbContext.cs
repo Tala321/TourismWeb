@@ -27,6 +27,8 @@ namespace TourismWebProject.Models
 
         public DbSet<Comment> Comment { get; set; }
 
+        public DbSet<User> User { get; set; }
+
         public DbSet<UserType> UserType { get; set; }
 
         public DbSet<BlogPage> BlogPage { get; set; }

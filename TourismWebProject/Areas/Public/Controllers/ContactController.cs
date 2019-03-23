@@ -13,6 +13,7 @@ namespace TourismWebProject.Areas.Public.Controllers
     {
         TourismDbContext db = new TourismDbContext();
 
+
         // GET: Public/Contact
         [HttpGet]
         public ActionResult Index()
@@ -33,6 +34,13 @@ namespace TourismWebProject.Areas.Public.Controllers
         [HttpPost]
         public ActionResult Index(ContactForm contactForm )
         {
+           if (Session["UserLog"] != null)
+            {
+                int userId = Convert.ToInt32(Session["UserLog"]);
+                var user = db.User.FirstOrDefault(i => i.UserId == userId);
+                contactForm.ContactFormEmail = user.UserEmail;
+                contactForm.ContactFormName = user.UserName;
+            }
            
             db.ContactForm.Add(contactForm);
              

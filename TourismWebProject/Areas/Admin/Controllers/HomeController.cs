@@ -8,14 +8,14 @@ using TourismWebProject.Models;
 
 namespace TourismWebProject.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    [AdminAuthenticate]
+    public class HomeController : BaseController
     {
         TourismDbContext db = new TourismDbContext();
 
         // GET: Admin/Home
         public ActionResult Index()
-        {
-            
+        {         
             return View(db.HomePage.ToList());
         }
 

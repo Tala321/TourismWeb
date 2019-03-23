@@ -11,5 +11,9 @@ namespace TourismWebProject.Models
 
         public List<ContactPage> ContactPage { get; set; }
 
+        public List<User> User { get; set; }
+
+        public List<Admin> Admin { get; set; }
+
     }
 }

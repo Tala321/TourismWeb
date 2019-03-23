@@ -10,12 +10,9 @@ using System.Threading;
 
 namespace TourismWebProject.Areas.Admin.Controllers
 {
-    public class HotelsController : Controller
-    {
-
-      
-
-       
+    [AdminAuthenticate]
+    public class HotelsController : BaseController
+    { 
         TourismDbContext db = new TourismDbContext();
 
         // GET: Admin/Hotels
@@ -379,7 +376,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
         public void SavePic(HttpPostedFileBase Pic, Room room)
         {
             var fileName = Pic.FileName;
-            var FilePath = Path.Combine(Server.MapPath("~/HotelItems/Images"), fileName);
+            var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), fileName);
             Pic.SaveAs(FilePath);
             room.RoomPic = fileName;
             db.SaveChanges();

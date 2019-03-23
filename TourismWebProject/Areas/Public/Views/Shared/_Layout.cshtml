@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 
     <link rel="stylesheet" href="~/Assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/Assets/css/animate.css">
@@ -39,22 +41,33 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="~/Public/Home/Index">dirEngine.</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    @foreach (var item in MenuModel.MainMenu)
-                    {
-                        <li class="nav-item"><a href="~/Public/@item.MainMenuName/Index" class="nav-link">@item.MainMenuName</a></li>
+            @if (Session["UserLog"] != null)
+            {
+            <a class="navbar-brand" href="~/Public/Account/YourProfile">
+                <i class="fas fa-user-circle"></i> Profile
+            </a>
 
                     }
+                    else
+                    {
+            <a class="navbar-brand" href="~/Public/Account/Login"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                    }
 
-                </ul>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="oi oi-menu"></span> Menu
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="ftco-nav">
+                        <ul class="navbar-nav ml-auto">
+                            @foreach (var item in MenuModel.MainMenu)
+                            {
+                                <li class="nav-item"><a href="~/Public/@item.MainMenuName/Index" class="nav-link">@item.MainMenuName</a></li>
+
+                            }
+
+                        </ul>
+                    </div>
             </div>
-        </div>
     </nav>
     @RenderBody()
     <footer class="ftco-footer ftco-bg-dark ftco-section pt-5 pb-5">

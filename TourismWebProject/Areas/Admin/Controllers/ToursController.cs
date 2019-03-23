@@ -10,7 +10,8 @@ using System.Data.Entity.SqlServer;
 
 namespace TourismWebProject.Areas.Admin.Controllers
 {
-    public class ToursController : Controller
+    [AdminAuthenticate]
+    public class ToursController : BaseController
     {
         TourismDbContext db = new TourismDbContext();
 

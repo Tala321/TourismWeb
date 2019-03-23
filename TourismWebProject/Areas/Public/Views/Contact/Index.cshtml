@@ -4,8 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-@foreach(var item in Model.contactPage)
-{ 
+@foreach (var item in Model.contactPage)
+{
     <div class="hero-wrap js-fullheight" style="background-image: url(/Assets/images/@item.ContactBackPic);">
         <div class="overlay"></div>
         <div class="container">
@@ -44,32 +44,45 @@
             <div class="col-md-6 pr-md-5">
                 @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
                 {
-                    foreach(var item in Model.contactForm)
+                    if (Session["UserLog"] != null)
                     {
                         <div class="form-group">
-                            <input type="hidden" class="form-control" name="UserId" value="@item.UserId">
+                            <input type="hidden" class="form-control" name="UserId" value="@Convert.ToInt32(Session["UserLog"])">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" required="" class="form-control" name="ContactFormSubject" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="ContactFormMessage" required="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <input type="text" required="" class="form-control" name="ContactFormName" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" required="" class="form-control" name="ContactFormEmail" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" required="" class="form-control" name="ContactFormSubject" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="ContactFormMessage" required="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
                         </div>
                     }
-                    <div class="form-group">
-                        <input type="text" required=""  class="form-control" name="ContactFormName" placeholder="Your Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="text"  required="" class="form-control" name="ContactFormEmail" placeholder="Your Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="text"  required="" class="form-control" name="ContactFormSubject" placeholder="Subject">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="ContactFormMessage"   required="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-                    </div>
                 }
             </div>
 
-            <div class="col-md-6" id="map"> @Html.Raw( ViewData["Location"])</div>
-            </div>
+            <div class="col-md-6" id="map"> @Html.Raw(ViewData["Location"])</div>
+        </div>
     </div>
 </section>
 

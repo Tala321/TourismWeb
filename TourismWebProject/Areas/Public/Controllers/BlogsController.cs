@@ -92,7 +92,7 @@ namespace TourismWebProject.Areas.Public.Controllers
             {
                 comment.Status = "Not Approved";
                 comment.CommentDate = DateTime.Now;
-                comment.UserId = 1;//Change it!============================================================
+                comment.UserId = Convert.ToInt32(Session["UserLog"]);
                 db.Comment.Add(comment);
                 db.SaveChanges();
             }
