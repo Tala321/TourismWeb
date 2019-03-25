@@ -20,7 +20,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
         {
             TourViewModel tourViewModel = new TourViewModel()
             {
-                Tour = db.Tour.Include(i => i.Hotel).ToList(),
+                Tour = db.Tours.Include(i => i.Hotel).ToList(),
                 TourPage = db.TourPage.ToList()
 
             };
@@ -98,7 +98,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
                 tour.TourStatus = 1;
                 tour.ServiceTypeId = 2;
-                db.Tour.Add(tour);
+                db.Tours.Add(tour);
 
                 //add to reservation
                 AddReservation(tour);
@@ -120,7 +120,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
 
             ViewBag.Statuses = db.Status.ToList();
 
-            foreach (var item in db.Tour.ToList())
+            foreach (var item in db.Tours.ToList())
             {
                 if (item.TourId == Convert.ToInt32(id))
                 {
@@ -136,7 +136,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
         public ActionResult TourEdit([Bind(Exclude = "TourPic")]Tour tour, HttpPostedFileBase TourPic)
         {
 
-            foreach (var item in db.Tour.ToList())
+            foreach (var item in db.Tours.ToList())
             {
                 if (item.TourId == Convert.ToInt32(TempData["TourId"]))
                 {
@@ -292,7 +292,7 @@ namespace TourismWebProject.Areas.Admin.Controllers
                 Reservation TourReservation = new Reservation()
                 {
                     ServiceTypeId = 2,
-                    UserId = 1,/////change it!!!!!!!!!+===================================
+                    UserId=0,
                     ReservationDateFrom = tour.DateFrom,
                     ReservationDateTo = tour.DateTo,
                     ReservationServiceTypeId = tour.HotelId,

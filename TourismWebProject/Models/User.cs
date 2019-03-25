@@ -13,7 +13,6 @@ namespace TourismWebProject.Models
     {
         public User()
         {
-            Reservation = new HashSet<Reservation>();
 
             Comment = new HashSet<Comment>();
 
@@ -41,7 +40,7 @@ namespace TourismWebProject.Models
         public string UserPhone { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(100)] [EmailAddress]
         public string UserEmail { get; set; }
 
         [MaxLength(300)]
@@ -50,8 +49,6 @@ namespace TourismWebProject.Models
         [Required]
         [MaxLength(100)]
         public string UserPassword { get; set; }
-
-        public ICollection<Reservation> Reservation { get; set; }
 
         public ICollection<Comment> Comment { get; set; }
 

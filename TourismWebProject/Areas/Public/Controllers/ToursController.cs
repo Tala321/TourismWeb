@@ -18,7 +18,7 @@ namespace TourismWebProject.Areas.Public.Controllers
             TourViewModel tourViewModel = new TourViewModel()
             {
                 TourPage = db.TourPage.ToList(),
-                Tour = db.Tour.Include(x => x.Hotel).ToList()
+                Tour = db.Tours.Include(x => x.Hotel).ToList()
             };
 
             ViewData["Country"] = TempData["CountryName"];
@@ -33,7 +33,7 @@ namespace TourismWebProject.Areas.Public.Controllers
         {
             if (id != null && db.Hotel.Any(i => i.HotelId == id))
             {
-                foreach (var item in db.Tour.Include(i => i.Hotel).ToList())
+                foreach (var item in db.Tours.Include(i => i.Hotel).ToList())
                 {
                     if (item.TourId == id)
                     {
@@ -59,7 +59,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                 TourViewModel tourViewModel = new TourViewModel()
                 {
                     TourPage = db.TourPage.ToList(),
-                    Tour = db.Tour.Include(x => x.Hotel).ToList()
+                    Tour = db.Tours.Include(x => x.Hotel).ToList()
                 };
                 ViewData["NoPlaces"] = TempData["NoPlaces"];
                 ViewData["BookeStatus"] = TempData["BookStatus"];
@@ -77,7 +77,7 @@ namespace TourismWebProject.Areas.Public.Controllers
         public ActionResult Page(int? id)
         { int TourItemCount = (Convert.ToInt32(id) - 1) * 6;
 
-            if (id != null && TourItemCount < db.Tour.OrderByDescending(i => i.TourId).First().TourId)
+            if (id != null && TourItemCount < db.Tours.OrderByDescending(i => i.TourId).First().TourId)
             {
                 TempData["PageNum"] = id - 1;
             return RedirectToAction("Index");
@@ -96,7 +96,7 @@ namespace TourismWebProject.Areas.Public.Controllers
             if (room.RoomCapacity != 0)
             {
                 var amount = 0;
-                foreach (var item in db.Tour.Where(i => i.TourId == tour.TourId).ToList())
+                foreach (var item in db.Tours.Where(i => i.TourId == tour.TourId).ToList())
                 {
                     amount = item.TourPrice * room.RoomCapacity;
                    

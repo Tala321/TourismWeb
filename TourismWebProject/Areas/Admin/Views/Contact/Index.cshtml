@@ -78,7 +78,14 @@
                                 <tbody>
                                     <tr>
                                         <td>@item.ContactFormId</td>
-                                        <td>@item.UserId</td>
+                                        @if (@item.UserId == 0)
+                                        {
+                                            <td>Guest</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@item.UserId</td>
+                                        }
                                         <td>@item.ContactFormName</td>
                                         <td>@item.ContactFormSubject</td>
                                         <td>@item.ContactFormMessage</td>

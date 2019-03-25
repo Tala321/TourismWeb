@@ -1805,6 +1805,23 @@
     <Content Include="Assets\Payment\images\visa.png" />
     <Content Include="Assets\Payment\images\visa1.png" />
     <Content Include="Assets\Payment\images\visa2.png" />
+    <Content Include="Assets\Registration\css\main.css" />
+    <Content Include="Assets\Registration\css\main.min.css" />
+    <Content Include="Assets\Registration\js\global.js" />
+    <Content Include="Assets\Registration\vendor\datepicker\daterangepicker.css" />
+    <Content Include="Assets\Registration\vendor\datepicker\daterangepicker.js" />
+    <Content Include="Assets\Registration\vendor\datepicker\moment.min.js" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\HELP-US-OUT.txt" />
+    <Content Include="Assets\Registration\vendor\jquery\jquery.js" />
+    <Content Include="Assets\Registration\vendor\jquery\jquery.min.js" />
+    <Content Include="Assets\Registration\vendor\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="Assets\Registration\vendor\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Assets\Registration\vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Assets\Registration\vendor\select2\select2.min.css" />
+    <Content Include="Assets\Registration\vendor\select2\select2.min.js" />
     <Content Include="BlogItems\blogItem1.txt" />
     <Content Include="BlogItems\blogItem2.txt" />
     <Content Include="BlogItems\blogItem3.txt" />
@@ -2662,6 +2679,7 @@
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HotelsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReservationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ToursController.cs" />
     <Compile Include="Areas\Public\Controllers\AboutController.cs" />
     <Compile Include="Areas\Public\Controllers\AccountController.cs" />
@@ -2671,6 +2689,7 @@
     <Compile Include="Areas\Public\Controllers\HomeController.cs" />
     <Compile Include="Areas\Public\Controllers\HotelsController.cs" />
     <Compile Include="Areas\Public\Controllers\InvalidActionController.cs" />
+    <Compile Include="Areas\Public\Controllers\RegisterController.cs" />
     <Compile Include="Areas\Public\Controllers\ToursController.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
@@ -2701,6 +2720,7 @@
     <Compile Include="Models\LayoutViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\ReservationViewModel.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\MainMenu.cs" />
     <Compile Include="Models\Rating.cs" />
@@ -3132,6 +3152,17 @@
     <Content Include="Areas\Admin\Assets\Login\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Areas\Public\Views\Account\Login.cshtml" />
     <Content Include="Areas\Public\Views\Account\YourProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\Reservation\Index.cshtml" />
+    <Content Include="Areas\Public\Views\Register\Index.cshtml" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\Registration\vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="Assets\Registration\vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Assets\Registration\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Assets\Registration\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Assets\Registration\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

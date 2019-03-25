@@ -36,9 +36,6 @@ namespace TourismWebProject.Models
 
         public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-
         public int ServiceTypeId { get; set; }
 
         [ForeignKey("ServiceTypeId")]

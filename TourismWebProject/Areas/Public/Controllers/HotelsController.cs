@@ -403,12 +403,14 @@ namespace TourismWebProject.Areas.Public.Controllers
 
                                                 if (db.Reservation.Any(w => w.ReservationServiceTypeId == item.HotelId))
                                                 {
-                                                    foreach (var item1 in db.Reservation.Where(d => d.ReservationServiceTypeId == item.HotelId && d.ReservationStatus == true).ToList())
+                                                    //foreach (var item1 in db.Reservation.Where(d => d.ReservationServiceTypeId == item.HotelId && d.ReservationStatus == true).ToList())
+                                                    //{
+                                                    foreach (var item1 in db.Reservation.Where(i => ( i.ReservationStatus == true) && (i.ReservationDateFrom.Month == reservation.ReservationDateFrom.Month || i.ReservationDateTo.Month == reservation.ReservationDateTo.Month || i.ReservationDateTo.Month == reservation.ReservationDateFrom.Month || i.ReservationDateFrom.Month == reservation.ReservationDateTo.Month)).ToList())
                                                     {
                                                         foreach (var item2 in db.HotelRoom.ToList())
                                                         {
-
-                                                            if (item2.HotelId == item1.ReservationServiceTypeId && item2.RoomId == item1.ReservationServiceId)
+                                                           
+                                                                if (item2.HotelId == item1.ReservationServiceTypeId && item2.RoomId == item1.ReservationServiceId)
                                                             {
                                                                 //all cases
                                                                 if (Month == 1)
@@ -430,7 +432,7 @@ namespace TourismWebProject.Areas.Public.Controllers
                                                                             CheckHotelAvailability(item);
                                                                         }
                                                                     }
-
+                                                                   
                                                                     else if ((dateFrom.Month == item1.ReservationDateFrom.Month && dateFrom.Day < item1.ReservationDateFrom.Day || dateFrom.Month == item1.ReservationDateTo.Month && dateFrom.Day > item1.ReservationDateTo.Day) && dateTo.Month != item1.ReservationDateTo.Month)
                                                                     {
 

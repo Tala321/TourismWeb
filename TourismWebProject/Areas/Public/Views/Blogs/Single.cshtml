@@ -44,7 +44,14 @@
                             {
                                 <li class="comment">
                                     <div class="vcard bio">
-                                        <img src="/Assets/images/@item.User.UserPic" alt="Image placeholder">
+                                        @if (@item.User.UserPic!=null)
+                                        {
+                                            <img src="/Assets/images/@item.User.UserPic" alt="Image placeholder">
+                                        }
+                                        else
+                                        {
+
+                                        }
                                     </div>
                                     <div class="comment-body">
                                         <h3>@item.User.UserName @item.User.UserSurname</h3>

@@ -117,10 +117,11 @@ namespace TourismWebProject.Areas.Public.Controllers
             return RedirectToAction("YourProfile");
         }
 
+
         [HttpPost]
         public ActionResult EditInfo(User user)
         {
-            if(user.UserName !=null && user.UserSurname !=null && user.UserPhone !=null && user.UserEmail !=null&& user.UserInfo !=null)
+            if (user.UserName != null && user.UserSurname != null && user.UserPhone != null && user.UserEmail != null && user.UserInfo != null)
             {
                 foreach (var item in db.User.ToList())
                 {
@@ -135,21 +136,45 @@ namespace TourismWebProject.Areas.Public.Controllers
                     }
                 }
             }
-           
+
             return RedirectToAction("YourProfile");
         }
-        //-------------------------
 
-
-        //Upload photo
-        public void SavePic(HttpPostedFileBase Pic, int id)
+        [HttpPost]
+        public ActionResult ChangePassword(User user)
         {
-            var fileName = Pic.FileName;
-            var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), fileName);
-            Pic.SaveAs(FilePath);
-            var user = db.User.FirstOrDefault(i => i.UserId == id);
-            user.UserPic = fileName;
-            db.SaveChanges();
+            if (user.UserPassword != null)
+            {
+                if (user.UserPassword.Count() >= 8)
+                {
+                    {
+                        foreach (var item in db.User.ToList())
+                        {
+                            if (item.UserId == Convert.ToInt32(Session["UserLog"]))
+                            {
+                                item.UserPassword = user.UserPassword;
+                                db.SaveChanges();
+                                return RedirectToAction("YourProfile", "Account");
+                            }
+                        }
+                    }
+                }
+            }
+            return RedirectToAction("EditInfo");
+        }
+
+            //-------------------------
+
+
+            //Upload photo
+            public void SavePic(HttpPostedFileBase Pic, int id)
+            {
+                var fileName = Pic.FileName;
+                var FilePath = Path.Combine(Server.MapPath("~/Assets/Images"), fileName);
+                Pic.SaveAs(FilePath);
+                var user = db.User.FirstOrDefault(i => i.UserId == id);
+                user.UserPic = fileName;
+                db.SaveChanges();
+            }
         }
     }
-}

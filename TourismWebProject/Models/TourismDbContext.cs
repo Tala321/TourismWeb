@@ -47,7 +47,7 @@ namespace TourismWebProject.Models
 
         public DbSet<Rating> Rating { get; set; }
 
-        public DbSet<Tour> Tour { get; set; }
+        public DbSet<Tour> Tours { get; set; }
 
         public DbSet<TourPage> TourPage { get; set; }
 

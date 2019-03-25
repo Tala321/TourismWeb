@@ -43,31 +43,33 @@
         <div class="container">
             @if (Session["UserLog"] != null)
             {
-            <a class="navbar-brand" href="~/Public/Account/YourProfile">
-                <i class="fas fa-user-circle"></i> Profile
-            </a>
+                <a class="navbar-brand" href="~/Public/Account/YourProfile">
+                    <i class="fas fa-user-circle"></i> Profile
+                </a>
 
-                    }
-                    else
+            }
+            else
+            {
+                <a class="navbar-brand" href="~/Public/Account/Login"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+
+                <a class="navbar-brand" href="~/Public/Register/Index"><i class="fas fa-user-plus"></i> Register</a>
+            }
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    @foreach (var item in MenuModel.MainMenu)
                     {
-            <a class="navbar-brand" href="~/Public/Account/Login"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                        <li class="nav-item"><a href="~/Public/@item.MainMenuName/Index" class="nav-link">@item.MainMenuName</a></li>
+
                     }
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="oi oi-menu"></span> Menu
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="ftco-nav">
-                        <ul class="navbar-nav ml-auto">
-                            @foreach (var item in MenuModel.MainMenu)
-                            {
-                                <li class="nav-item"><a href="~/Public/@item.MainMenuName/Index" class="nav-link">@item.MainMenuName</a></li>
-
-                            }
-
-                        </ul>
-                    </div>
+                </ul>
             </div>
+        </div>
     </nav>
     @RenderBody()
     <footer class="ftco-footer ftco-bg-dark ftco-section pt-5 pb-5">

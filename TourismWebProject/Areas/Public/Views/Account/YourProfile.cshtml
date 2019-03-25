@@ -71,6 +71,8 @@
                         <a href="~/Public/Account/EditInfo" class="btn-danger btn">Edit Info</a>
 
                         <a href="~/Public/Account/Logout" class="btn-info btn">Logout</a>
+
+                        <a href="~/Public/Home/Index" class="btn-primary btn">Homepage</a>
                     </div>
 
                     <!-- END MENU -->
@@ -107,7 +109,16 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="AboutPageBackPicText">Info:</label>
-                                                        <textarea type="textarea" required="" class="form-control" name="UserInfo">@ViewData["UserInfo"]</textarea>
+                                                        <textarea type="textarea" class="form-control" name="UserInfo">@ViewData["UserInfo"]</textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                }
+
+                                                @using (Html.BeginForm("ChangePassword", "Account", FormMethod.Post))
+                                                {
+                                                    <div class="form-group ">
+                                                        <label for="UserEmail">New Password:</label>
+                                                        <input type="text" class="form-control" name="UserPassword">
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 }

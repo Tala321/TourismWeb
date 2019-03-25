@@ -23,7 +23,7 @@ namespace TourismWebProject.Models
         {
             System.Timers.Timer t = new System.Timers.Timer();
             t.Elapsed += new System.Timers.ElapsedEventHandler(TimerWorker);
-            t.Interval = 600000;
+            t.Interval = 86400000;
             t.Enabled = true;
             t.AutoReset = true;
             t.Start();
@@ -41,7 +41,7 @@ namespace TourismWebProject.Models
                     db.SaveChanges();
                 }
             }
-            foreach (var item in db.Tour.ToList())
+            foreach (var item in db.Tours.ToList())
             {
                 if (item.DateTo.Date < DateTime.Now)
                 {
